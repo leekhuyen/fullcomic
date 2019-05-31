@@ -1,2 +1,2 @@
 *.db
-fullcomic.db
+comic_lib/model/__pycache__/*.pyc

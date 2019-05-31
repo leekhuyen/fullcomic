@@ -31,7 +31,7 @@ def home():
 
 @app.route('/<string:comicNameLink>/')
 def comic(comicNameLink):
-    print(f'comic threading {threading.get_ident()}, comic:{comicNameLink}, url:{request.url}')
+    #print(f'comic threading {threading.get_ident()}, comic:{comicNameLink}, url:{request.url}')
     session = Session()
     #find comic by linkName
     tmp_comic = Comic.find_by_link(comicNameLink, session)
@@ -85,6 +85,13 @@ def comic(comicNameLink):
 @app.route('/<string:comicName>/<string:chapterName>/')
 def chapter(comicName, chapterName):
     return 'not found'
+
+@app.route('/ajax.php' , methods=['POST'])
+def ajaxphp():
+    request_data = request.get_json()
+    print(f'type {request.headers}')
+    print(f'data {request.form}')
+    return "ajaxphp"
 
 app.jinja_env.filters['get_eng_name'] = get_eng_name
 app.run(port=5000, threaded=True)

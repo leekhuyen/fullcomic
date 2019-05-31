@@ -1596,7 +1596,7 @@
           href="https://cdnvn.truyenfull.vn/favicons/apple-touch-icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180"
           href="https://cdnvn.truyenfull.vn/favicons/apple-touch-icon-180x180.png">
-    <link rel="preload" href="{{url_for('static', filename='js/mainjs-1303.js.download')}}" as="script">
+    <link rel="preload" href="{{url_for('static', filename='js/mainjs-1303.js')}}" as="script">
     <meta property="fb:app_id" content="333184773543272">
     <meta property="og:site_name" content="{{ config.domain }}">
     <meta property="og:type" content="book">
@@ -1610,7 +1610,7 @@
     <meta property="book:tag" content="Lộng Triều">
     <meta property="book:tag" content="long trieu">
     <meta property="book:tag" content="Thụy Căn">
-    <link rel="stylesheet preload" as="style" type="text/css" href="{{ url_for('static', filename='css/maincss-1203-4.css') }}">
+    <link rel="stylesheet preload" as="style" type="text/css" href={{ url_for('static', filename='css/maincss-1203-4.css') }}>
     <style type="text/css">
         .fb_hidden {
             position: absolute;
@@ -2161,12 +2161,15 @@
 <script src="{{url_for('static',filename='js/all.js.download')}}" async="" crossorigin="anonymous"></script>
 <script id="facebook-jssdk" src="{{url_for('static',filename='js/all.js(1).download')}}"></script>
 <script async="" src="{{url_for('static', filename='js/analytics.js.download')}}"></script>
-<script src="{{url_for('static', filename='js/mainjs-1303.js.download')}}"></script>
+<script src="{{url_for('static', filename='js/mainjs-1303.js')}}"></script>
 <noscript>
     <link rel="stylesheet preload" as="style" type="text/css"
-          href="{{url_for('static', filename='css/maincss-1203-4.css')}}"/>
+          href={{url_for('static', filename='css/maincss-1203-4.css')}}/>
 </noscript>
-<script>$('head').append('<link rel="stylesheet preload" as="style" type="text/css" href="\{\{ url_for(\'static\', filename=\'css/maincss-1203-4.css\')}}"/>');</script>
+{% set add_head %}
+<link rel="stylesheet preload" as="style" type="text/css" href = {{url_for('static',filename='css/maincss-1203-4.css')}}/>
+{% endset %}
+<script>$('head').append({{ add_head }});</script>
 {#<div id="fb-root" class=" fb_reset">#}
 {#    <div style="position: absolute; top: -10000px; width: 0px; height: 0px;">#}
 {#        <div>#}

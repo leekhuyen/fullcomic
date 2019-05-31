@@ -4876,12 +4876,13 @@ $(document).ready(function() {
     var k = $("#truyen-ascii").val(),
         h = $("#ten-truyen").val(),
         l = $("#truyen-id").val();
-    $("body").is("#body_truyen") && $.post("/ajax.php", {
-        type: "update_views",
-        tid: l,
-        add: "truyen",
-        t: (new Date).getTime()
-    });
+
+    // $("body").is("#body_truyen") && $.post("/ajax.php", {
+    //     type: "update_views",
+    //     tid: l,
+    //     add: "truyen",
+    //     t: (new Date).getTime()
+    // });
     $(".navbar, .overlay-container").on("click", ".login-link", function() {
         $(".overlay-container > div").addClass("hide");
         $(".overlay-container, .login-container").removeClass("hide")
@@ -5037,12 +5038,12 @@ $(document).ready(function() {
         $(".chapter-nav").on("click", "button#chapter_comment", function() {
             load_comment("fb-comment-chapter", r, p)
         });
-        $.post("/ajax.php", {
-            type: "update_views",
-            tid: l,
-            add: "chapter",
-            t: (new Date).getTime()
-        });
+        // $.post("/ajax.php", {
+        //     type: "update_views",
+        //     tid: l,
+        //     add: "chapter",
+        //     t: (new Date).getTime()
+        // });
         m = $(".truyen-title").text();
         $.post("/ajax.php", {
             type: "update_history",
@@ -5098,6 +5099,8 @@ $(document).ready(function() {
     $(".dropdown-menu, #list-chapter").on("click", "form", function(a) {
         a.stopPropagation()
     });
+
+    /*
     $("#list-chapter").on("submit", "#page_jump", function(a) {
         a.preventDefault();
         var b = $("h1").text();
@@ -5138,6 +5141,7 @@ $(document).ready(function() {
             })
         }
     });
+    */
     if ($("#body_home").length) {
         var w = function() {
             $("#hot-select option:selected").next().val() ? $("#hot-select option:selected").prop("selected", !1).next().prop("selected", !0) : ($("#hot-select option:selected").prop("selected", !1), $("#hot-select option:eq(0)").prop("selected", !0));
