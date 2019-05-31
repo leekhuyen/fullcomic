@@ -1,0 +1,4184 @@
+{% extends "base.html" %}
+
+{% block navigationBar %}
+<div class="navbar-breadcrumb">
+    <div class="container breadcrumb-container">
+        <ol class="breadcrumb">
+            <li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                <a href="{{ config.url }}" accesskey="1">
+                    <span class="glyphicon glyphicon-home"></span>
+                </a>
+                <a href="https://truyenfull.vn/" title="Đọc truyện online" itemprop="url">
+                    <span itemprop="title">Truyện</span>
+                </a>
+            </li>
+            <li class="active" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                <h1>
+                    <a href="https://truyenfull.vn/long-trieu/" title="{{ comic.name }}" itemprop="url">
+                        <span itemprop="title">{{ comic.name }}</span>
+                    </a>
+                </h1>
+            </li>
+        </ol>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container" id="truyen">
+    <div class="col-xs-12 col-sm-12 col-md-9 col-truyen-main">
+        <div class="col-xs-12 col-info-desc" itemscope="" itemtype="https://schema.org/Book">
+            <div class="title-list book-intro"><h2>Thông tin truyện</h2></div>
+            <h3 class="title" itemprop="name">{{ comic.name }}</h3>
+            <div class="col-xs-12 col-sm-4 col-md-4 info-holder">
+                <div class="books">
+                    <div class="book"><img src="{{ comic.imageLink }}" alt="{{ comic.name }}"
+                                           itemprop="image">
+                    </div>
+                </div>
+                <div class="info">
+                    <div><h3>Tác giả:</h3><a itemprop="author" href="https://truyenfull.vn/tac-gia/thuy-can/"
+                                             title="{{ comic.writer }}">{{ comic.writer }}</a></div>
+                    <div><h3>Thể loại:</h3>
+                        {% for category in comic.categories %}
+                        <a itemprop="genre" href="https://truyenfull.vn/the-loai/do-thi/"
+                           title="{{ category.name }}">{{ category.name }}</a> {% if not loop.last %},
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div><h3>Nguồn:</h3><span class="source">{{ comic.source }}</span></div>
+                    <div><h3>Trạng thái:</h3><span class="text-success">{{ comic.status }}</span></div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-8 col-md-8 desc">
+                <div class="rate">
+                    <div class="rate-holder" data-score="{{ comic.rating }}" style="cursor: pointer;">
+                        <img alt="1" src="{{ url_for('static', filename='images/star-on.png') }}"
+                             title="Không còn gì để nói...">&nbsp;
+                        <img alt="2" src="{{ url_for('static', filename='images/star-on.png') }}"
+                             title="WTF">&nbsp;
+                        <img alt="3" src="{{ url_for('static', filename='images/star-on.png') }}"
+                             title="Cái gì thế này ?!">&nbsp;
+                        <img alt="4" src="{{ url_for('static', filename='images/star-on.png') }}"
+                             title="Haizz">&nbsp;
+                        <img alt="5" src="{{ url_for('static', filename='images/star-on.png') }}"
+                             title="Tạm">&nbsp;
+                        <img alt="6" src="{{ url_for('static', filename='images/star-on.png') }}"
+                             title="Cũng được">&nbsp;
+                        <img alt="7" src="{{ url_for('static', filename=" images/star-on.png") }}"
+                        title="Khá đấy">&nbsp;
+                        <img alt="8" src="{{ url_for('static', filename='images/star-half.webp') }}"
+                             title="Được">&nbsp;
+                        <img alt="9" src="{{ url_for('static', filename='images/star-off.webp') }}"
+                             title="Hay">&nbsp;
+                        <img alt="10" src="{{ url_for('static', filename='images/star-off.webp') }}"
+                             title="Tuyệt đỉnh!">
+                        {# <input name="score" type="hidden" value="{{ comic.rating }}">#}
+                    </div>
+                    <em class="rate-text"></em>
+                    <div class="small" itemprop="aggregateRating" itemscope=""
+                         itemtype="https://schema.org/AggregateRating"><em>Đánh giá: <strong><span
+                            itemprop="ratingValue">{{ comic.rating }}</span></strong>/<span class="text-muted"
+                                                                                            itemprop="bestRating">10</span>
+                        từ
+                        <strong><span itemprop="ratingCount">27</span> {{ comic.ratingNumber }}</strong></em></div>
+                </div>
+                <div class="desc-text desc-text-full" itemprop="description">
+                    <br><br>
+                    {{ comic.description }}
+                    <i><br></i></div>
+                <div class="showmore"><a class="btn btn-default btn-xs hide" href="javascript:void(0)"
+                                         title="Xem thêm">Xem thêm »</a></div>
+            </div>
+        </div>
+        <!--<div class="col-xs-12 text-center no-padding">-->
+        <!--<div class="hidden-xs hidden-sm hidden-md">-->
+        <!--<div class="ads-780-90" id="ads-780-90-story-1">&lt;!&ndash; Composite Start &ndash;&gt;-->
+        <!--<div id="M182108ScriptRootC335852" style="">-->
+        <!--<div id="M182108PreloadC335852" style="display: none;"></div>-->
+        <!--<iframe style="display: none;" src="../static/comic_files/saved_resource.html"></iframe>-->
+        <!--<div id="MarketGidComposite335852" style="height: auto; overflow: visible;">-->
+        <!--<style class="MarketGidC335852" type="text/css">-->
+        <!--@font-face {-->
+        <!--font-family: 'Roboto';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 400;-->
+        <!--src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v15/mUdRVCMHGKUBOACHGTH1g-vvDin1pK8aKteLpeZ5c0A.woff) format('woff');-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 400;-->
+        <!--src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/opensans/v10/K88pR3goAWT7BTt32Z01m1tXRa8TVwTICgirnJhmVJw.woff2) format('woff2');-->
+        <!--unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 400;-->
+        <!--src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/opensans/v10/RjgO7rYTmqiVp7vzi-Q5UVtXRa8TVwTICgirnJhmVJw.woff2) format('woff2');-->
+        <!--unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 400;-->
+        <!--src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/opensans/v10/u-WUoqrET9fUeobQW7jkRVtXRa8TVwTICgirnJhmVJw.woff2) format('woff2');-->
+        <!--unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 400;-->
+        <!--src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/opensans/v10/cJZKeOuBrn4kERxqtaUH3VtXRa8TVwTICgirnJhmVJw.woff2) format('woff2');-->
+        <!--unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 700;-->
+        <!--src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzCUUniRZcd_wq8DYmIfsw2A.woff2) format('woff2');-->
+        <!--unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 700;-->
+        <!--src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzOXREeHhJi4GEUJI9ob_ak4.woff2) format('woff2');-->
+        <!--unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 700;-->
+        <!--src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzBUOjZSKWg4xBWp_C_qQx0o.woff2) format('woff2');-->
+        <!--unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 700;-->
+        <!--src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzOgdm0LZdjqr5-oayXSOefg.woff2) format('woff2');-->
+        <!--unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mgresponsive {-->
+        <!--display: inherit;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mgbox {-->
+        <!--padding: 0 !important;-->
+        <!--position: relative !important;-->
+        <!--text-align: center;-->
+        <!--vertical-align: top !important;-->
+        <!--margin: 0 auto;-->
+        <!--border-style: solid;-->
+        <!--border-width: 0px;-->
+        <!--border-color: ;-->
+        <!--background-color: ;-->
+        <!--display: -ms-flexbox;-->
+        <!--display: -webkit-flex;-->
+        <!--display: flex;-->
+        <!-- -webkit-flex-direction: row;-->
+        <!-- -ms-flex-direction: row;-->
+        <!--flex-direction: row;-->
+        <!-- -webkit-flex-wrap: wrap;-->
+        <!-- -ms-flex-wrap: wrap;-->
+        <!--flex-wrap: wrap;-->
+        <!--line-height: 100% !important;-->
+        <!--transition: none !important;-->
+        <!--box-sizing: border-box;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mgbox {-->
+        <!--width: 100%;-->
+        <!--max-width: 100%;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ div.mcimg {-->
+        <!--padding: 0px;-->
+        <!--text-align: center;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ img.mcimg {-->
+        <!--border-style: solid;-->
+        <!--border-color: #ffffff;-->
+        <!--border-width: 0px;-->
+        <!--width: 100% !important;-->
+        <!--height: auto !important;-->
+        <!--max-width: 492px;-->
+        <!--max-height: 328px;-->
+        <!--box-sizing: border-box;-->
+        <!--display: block;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mctitle {-->
+        <!--margin-top: 10px;-->
+        <!--text-align: left;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mctitle a {-->
+        <!--font-weight: normal;-->
+        <!--font-size: 17px;-->
+        <!--line-height: 17px;-->
+        <!--font-style: normal;-->
+        <!--text-decoration: none;-->
+        <!--color: #515150;-->
+        <!--font-family: Roboto;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mcdesc {-->
+        <!--display: none;-->
+        <!--text-align: center;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mcdesc a {-->
+        <!--font-weight: normal;-->
+        <!--font-size: 12px;-->
+        <!--line-height: 12px;-->
+        <!--font-style: normal;-->
+        <!--text-decoration: none;-->
+        <!--color: #666666;-->
+        <!--font-family: 'Open Sans', sans-serif;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mcdomain {-->
+        <!--display: block;-->
+        <!--text-align: center;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mcdomain a {-->
+        <!--font-weight: normal;-->
+        <!--font-size: 10px;-->
+        <!--line-height: 10px;-->
+        <!--font-style: normal;-->
+        <!--text-decoration: none;-->
+        <!--color: #bbbbbb;-->
+        <!--font-family: Roboto;-->
+        <!--padding: 4px;-->
+        <!--display: block;-->
+        <!--overflow: hidden;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mcdomain a img.mcimgsrc {-->
+        <!--vertical-align: bottom;-->
+        <!--margin-bottom: -3px;-->
+        <!--height: 20px;-->
+        <!--width: 20px;-->
+        <!--display: inline-block;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mgline {-->
+        <!--background: none repeat scroll 0 0;-->
+        <!--background-color: ;-->
+        <!--cursor: pointer;-->
+        <!--display: inline-block;-->
+        <!--overflow: hidden;-->
+        <!--zoom: 1;-->
+        <!--display: inline;-->
+        <!--padding: 0 !important;-->
+        <!--border-style: solid;-->
+        <!--border-color: #ffffff;-->
+        <!--border-width: 0px;-->
+        <!--width: 24%;-->
+        <!--max-width: 24%;-->
+        <!--box-sizing: border-box;-->
+        <!--margin: 10px 0.5%;-->
+        <!--display: -ms-flexbox;-->
+        <!--display: -webkit-flex;-->
+        <!--display: flex;-->
+        <!-- -webkit-flex-direction: column;-->
+        <!-- -ms-flex-direction: column;-->
+        <!--flex-direction: column;-->
+        <!--word-wrap: break-word;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mgline .image-container {-->
+        <!--position: relative;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mgline .image-container .mcimgad {-->
+        <!--position: absolute;-->
+        <!--right: 0;-->
+        <!--bottom: 0;-->
+        <!--width: 20px;-->
+        <!--height: 20px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mgline {-->
+        <!--vertical-align: top;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mgline, #MarketGidComposite335852_ .mgbox {-->
+        <!--min-width: 90px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mgline[max-width~="120px"] .mcdesc {-->
+        <!--display: none !important;-->
+        <!--}-->
+
+        <!--@supports not (flex-wrap: wrap) {-->
+        <!--.mgbox {-->
+        <!--display: block !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mgline {-->
+        <!--display: inline-block !important;-->
+        <!--}-->
+        <!--}-->
+
+        <!--.text-elements a {-->
+        <!--text-decoration: none;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ div.mcprice {-->
+        <!--text-align: center;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ div.mcprice span {-->
+        <!--font-weight: bold;-->
+        <!--font-size: 12px;-->
+        <!--line-height: 12px;-->
+        <!--font-style: normal;-->
+        <!--text-decoration: none;-->
+        <!--color: #ffffff;-->
+        <!--font-family: 'Open Sans', sans-serif;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ div.mgbuybox, #MarketGidComposite335852_ div.mgarrowbox {-->
+        <!--display: false;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ div.mgbuybox, #MarketGidComposite335852_ div.mgarrowbox, #MarketGidComposite335852_ div.mcprice {-->
+        <!--display: none;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ span.mcpriceold {-->
+        <!--text-decoration: line-through !important;-->
+        <!--}-->
+
+        <!--@media (max-width: 480px) {-->
+        <!--#MarketGidComposite335852_ .mgline {-->
+        <!--width: 48% !important;-->
+        <!--margin: 1% !important;-->
+        <!--max-width: 48% !important;-->
+        <!--}-->
+        <!--}-->
+
+        <!--@media (max-width: 480px) {-->
+        <!--#MarketGidComposite335852_ .mgline {-->
+        <!--width: 98% !important;-->
+        <!--margin: 1% !important;-->
+        <!--max-width: 98% !important;-->
+        <!--}-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mgpopular {-->
+        <!--background-color: rgba(255, 0, 0, 0.2) !important;-->
+        <!--border-color: rgba(255, 90, 0, 0.3) !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ img.mcimg {-->
+        <!--margin: 0;-->
+        <!--opacity: 1 !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mgline {-->
+        <!--position: relative;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mgline .fake {-->
+        <!--visibility: hidden;-->
+        <!--position: relative;-->
+        <!--padding-top: 4px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mgline:hover .mctitle a {-->
+        <!--color: #2b2b2b;-->
+        <!--text-decoration: underline !important;-->
+        <!--text-decoration: none !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mgline:hover .mcpriceold + .mcprice, #MarketGidComposite335852_ .mgline:hover .mcpriceold {-->
+        <!--visibility: hidden;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mgline:hover .mcdiscount {-->
+        <!--display: block;-->
+        <!--position: absolute;-->
+        <!--left: 0px;-->
+        <!--right: 0px;-->
+        <!--top: 5px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mgarrowbox {-->
+        <!--position: relative;-->
+        <!--background: #2b2b2b;-->
+        <!--width: 55%;-->
+        <!--height: 22px;-->
+        <!--margin: 0px;-->
+        <!--border-color: transparent;-->
+        <!--border-left-color: #2b2b2b;-->
+        <!--display: inline-block;-->
+        <!--font-family: 'Open Sans', sans-serif;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mgarrowbox:after {-->
+        <!--left: 100%;-->
+        <!--top: 50%;-->
+        <!--content: " ";-->
+        <!--height: 0px;-->
+        <!--width: 0px;-->
+        <!--position: absolute;-->
+        <!--pointer-events: none;-->
+        <!--margin-top: -11px;-->
+        <!--border: solid 11px;-->
+        <!--border-color: inherit;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mgbuybox {-->
+        <!--width: 40%;-->
+        <!--display: inline-block;-->
+        <!--text-align: right;-->
+        <!--font-weight: bold;-->
+        <!--font-family: 'Open Sans', sans-serif;-->
+        <!--font-size: 12px;-->
+        <!--color: #666666;-->
+        <!--text-decoration: underline;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mctitle {-->
+        <!--margin-top: 2px;-->
+        <!--line-height: 1 !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mctitle a {-->
+        <!--line-height: 110% !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mctitle a {-->
+        <!--line-height: 22px !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mcdesc {-->
+        <!--margin-top: 0;-->
+        <!--margin-bottom: 2px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mcdesc a {-->
+        <!--line-height: 1.5 !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ div.mcprice {-->
+        <!--margin-top: 5px;-->
+        <!--line-height: 12px !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ div.mgbuybox, #MarketGidComposite335852_ div.mgarrowbox {-->
+        <!--display: none;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mgtobottom {-->
+        <!--position: absolute;-->
+        <!--bottom: 0;-->
+        <!--width: 100%;-->
+        <!--text-align: left;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mgline .image-with-text, #MarketGidComposite335852_ .mgline .mgtobottom {-->
+        <!--width: 100% !important;-->
+        <!--margin: 0 auto;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mgline .image-with-text, #MarketGidComposite335852_ .mgline .mgtobottom {-->
+        <!--max-width: 492px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mghead {-->
+        <!--font-family: Roboto !important;-->
+        <!--color: #2b397b;-->
+        <!--font-size: 17px !important;-->
+        <!--text-transform: uppercase !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mghead {-->
+        <!--margin: 5px 0 0 0 !important;-->
+        <!--font-weight: 600 !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mcpriceold {-->
+        <!--float: left;-->
+        <!--padding-left: 5px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mcdiscount {-->
+        <!--display: none;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mcdomain {-->
+        <!--display: block;-->
+        <!--overflow: hidden;-->
+        <!--padding: 4px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mcdomain a {-->
+        <!--padding: 0px;-->
+        <!--display: block;-->
+        <!--padding-top: 5px;-->
+        <!--padding-bottom: 2px;-->
+        <!--overflow: hidden;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ div.mcprice, #MarketGidComposite335852_ div.mcriceold {-->
+        <!--font-weight: bold;-->
+        <!--font-size: 12px;-->
+        <!--line-height: 12px;-->
+        <!--font-style: normal;-->
+        <!--text-decoration: none;-->
+        <!--color: #ffffff;-->
+        <!--font-family: 'Open Sans', sans-serif;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ div.mcpriceold {-->
+        <!--text-decoration: line-through !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mgline[max-width~="120px"] .mgarrowbox, #MarketGidComposite335852_ .mgline[max-width~="120px"] .mgbuybox {-->
+        <!--display: none !important;-->
+        <!--}-->
+
+        <!--.image-with-text {-->
+        <!--min-height: 1px;-->
+        <!--}-->
+
+        <!--@media (max-width: 480px) {-->
+        <!--#MarketGidComposite335852_ .mgline {-->
+        <!--width: 98% !important;-->
+        <!--margin: 1% !important;-->
+        <!--max-width: 98% !important;-->
+        <!--}-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mg-slider-overlay {-->
+        <!--overflow: hidden;-->
+        <!--position: relative;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mg-slider-overlay .mg-slider-wrap {-->
+        <!--min-height: 200px;-->
+        <!--position: relative;-->
+        <!--width: 100%;-->
+        <!-- -webkit-transform: translate3D(0, 0, 0);-->
+        <!-- -moz-transform: translate3D(0, 0, 0);-->
+        <!-- -ms-transform: translate3D(0, 0, 0);-->
+        <!-- -o-transform: translate3D(0, 0, 0);-->
+        <!--transform: translate3D(0, 0, 0);-->
+        <!-- -webkit-transition-duration: 200ms;-->
+        <!-- -moz-transition-duration: 200ms;-->
+        <!-- -ms-transition-duration: 200ms;-->
+        <!-- -o-transition-duration: 200ms;-->
+        <!--transition-duration: 200ms;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mg-slider-overlay .mg-slider-wrap .mg-slider-box {-->
+        <!--left: 0;-->
+        <!--top: 0;-->
+        <!--position: absolute;-->
+        <!--width: 100%;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mg-pagination {-->
+        <!--text-align: center;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mg-pagination .mg-pagination-list {-->
+        <!--display: inline-block;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mg-pagination .mg-pagination-item {-->
+        <!--cursor: pointer;-->
+        <!--display: inline-block;-->
+        <!--*display: inline;-->
+        <!--*zoom: 1;-->
+        <!--width: 8px;-->
+        <!--height: 8px;-->
+        <!--margin: 0 2px;-->
+        <!--background: #ddd;-->
+        <!--border-radius: 50%;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mg-pagination .mg-pagination-item-prev, #MarketGidComposite335852_ .mg-pagination .mg-pagination-item-next {-->
+        <!--background: #f7f7f7;-->
+        <!--border: 1px solid #cecece;-->
+        <!--border-radius: 2px;-->
+        <!--cursor: pointer;-->
+        <!--display: inline-block;-->
+        <!--height: 11px;-->
+        <!--margin: 0 10px;-->
+        <!--padding: 5px 0;-->
+        <!--text-align: center;-->
+        <!--vertical-align: middle;-->
+        <!--width: 29px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mg-pagination .mg-pagination-item-prev:after, #MarketGidComposite335852_ .mg-pagination .mg-pagination-item-next:after {-->
+        <!--background: url(https://images.dable.io/static/i/prevnext2.png?3) no-repeat 0 0;-->
+        <!--background-size: 17px 11px;-->
+        <!--content: "";-->
+        <!--display: inline-block;-->
+        <!--height: 13px;-->
+        <!--width: 9px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mg-pagination .mg-pagination-item-next:after {-->
+        <!--background-position: -10px 0;-->
+        <!--width: 8px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mg-pagination .mg-pagination-item-current {-->
+        <!--background: #508eef;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852_ .mgheader {-->
+        <!--border-bottom: 1px solid #2b397b !important;-->
+        <!--padding-bottom: 3px;-->
+        <!--margin-bottom: 10px;-->
+        <!--} </style>-->
+        <!--<div class="mgbox">-->
+        <!--<div class="mgheader" data-advert-url="https://cdn.mgid.com/advert/mgid/main.html">-->
+        <!--<span class="mghead">TIN HOT</span>-->
+        <!--<div class="mg_addad335852"><a-->
+        <!--href="https://mgid.com/advertisers?utm_source=widget&amp;utm_medium=text&amp;utm_campaign=add&amp;utm_content=335852"-->
+        <!--target="_blank" rel="nofollow"><img-->
+        <!--style="display: inline-block;width: 65px!important;"-->
+        <!--src="../static/comic_files/by_mgid_adc_logo_mini.svg" alt="Mgid"-->
+        <!--title="Mgid"></a></div>-->
+        <!--</div>-->
+        <!--<style>-->
+        <!--.mghead {-->
+        <!--font-weight: 700;-->
+        <!--font-size: 14px;-->
+        <!--text-transform: uppercase;-->
+        <!--text-align: left;-->
+        <!--font-family: "Open Sans", sans-serif;-->
+        <!--color: #4555a7;-->
+        <!--display: block;-->
+        <!--margin: 5px 0 0px 5px;-->
+        <!--float: left;-->
+        <!--}-->
+
+        <!--.mgheader {-->
+        <!--display: table !Important;-->
+        <!--width: 100% !important;-->
+        <!--margin-bottom: 0px;-->
+        <!--}-->
+
+        <!--div.mg_addad335852 {-->
+        <!--text-align: right;-->
+        <!--opacity: 0.5;-->
+        <!--margin-right: 10px;-->
+        <!--display: inline-block;-->
+        <!--float: right;-->
+        <!--}-->
+
+        <!--div.mg_addad335852:hover {-->
+        <!--opacity: 1-->
+        <!--}-->
+
+        <!--div.mg_addad335852 a {-->
+        <!--color: #000000;-->
+        <!--font: normal 10px Myriad Pro;-->
+        <!--text-decoration: none;-->
+        <!--}-->
+
+        <!--div.mg_addad335852 img {-->
+        <!--margin: 0px -5px 0px 0px;-->
+        <!--border: 0px;-->
+        <!--float: none;-->
+        <!--padding: 0px;-->
+        <!--}</style>-->
+        <!--<div class="mgline teaser-3355708 type-w" style="position: relative;">-->
+        <!--<div class="image-with-text">-->
+        <!--<div class="mcimg"><a target="_blank"-->
+        <!--href="https://M%E1%BB%A1_%E1%BB%9F_b%E1%BB%A5ng_v%C3%A0_hai_b%C3%AAn_h%C3%B4ng_s%E1%BA%BD_bi%E1%BA%BFn_m%E1%BA%A5t_ch%E1%BB%89_trong_3_ng%C3%A0y/"-->
+        <!--data-hash="Gv9wxFbMgTsSwIYNAoIpTZaQLquqGI9S78pFQ_-8nFBkKBo8xEukQ9wI728WO7XI"-->
+        <!--rel="nofollow">-->
+        <!--<div class="image-container"><img class="mcimg" width="492" height="328"-->
+        <!--data-i="3355708"-->
+        <!--src="../static/comic_files/aHR0cDovL2ltZy11cy5tZ2lkLmNvbS90ZWFzZXIvMjAxOS0wMy0wNy8zNTcwNDYvMGFmZDcxNTkyZTllNjEyMWVmOTY4ZDA0ZDUwYzhjOGUuanBnP3Q9MTU1MTk5OTA0NzQwNw__.webp">-->
+        <!--&lt;!&ndash;intExchangeWagesImagePlace&ndash;&gt; </div>-->
+        <!--</a></div>-->
+        <!--<div class="text-elements">-->
+        <!--<div class="text_on_hover">-->
+        <!--<div class="mctitle"><a target="_blank"-->
+        <!--href="https://M%E1%BB%A1_%E1%BB%9F_b%E1%BB%A5ng_v%C3%A0_hai_b%C3%AAn_h%C3%B4ng_s%E1%BA%BD_bi%E1%BA%BFn_m%E1%BA%A5t_ch%E1%BB%89_trong_3_ng%C3%A0y/"-->
+        <!--data-hash="Gv9wxFbMgTsSwIYNAoIpTZaQLquqGI9S78pFQ_-8nFBkKBo8xEukQ9wI728WO7XI"-->
+        <!--rel="nofollow">Mỡ ở bụng và hai bên hông sẽ-->
+        <!--biến mất chỉ trong 3 ngày</a></div>-->
+        <!--<div class="fake">-->
+        <!--<div class="mcdomain"><a target="_blank"-->
+        <!--href="https://M%E1%BB%A1_%E1%BB%9F_b%E1%BB%A5ng_v%C3%A0_hai_b%C3%AAn_h%C3%B4ng_s%E1%BA%BD_bi%E1%BA%BFn_m%E1%BA%A5t_ch%E1%BB%89_trong_3_ng%C3%A0y/"-->
+        <!--data-hash="Gv9wxFbMgTsSwIYNAoIpTZaQLquqGI9S78pFQ_-8nFBkKBo8xEukQ9wI728WO7XI"-->
+        <!--rel="nofollow"></a></div>-->
+        <!--</div>-->
+        <!--<div class="mgtobottom">-->
+        <!--<div class="mcdomain"><a target="_blank"-->
+        <!--href="https://M%E1%BB%A1_%E1%BB%9F_b%E1%BB%A5ng_v%C3%A0_hai_b%C3%AAn_h%C3%B4ng_s%E1%BA%BD_bi%E1%BA%BFn_m%E1%BA%A5t_ch%E1%BB%89_trong_3_ng%C3%A0y/"-->
+        <!--data-hash="Gv9wxFbMgTsSwIYNAoIpTZaQLquqGI9S78pFQ_-8nFBkKBo8xEukQ9wI728WO7XI"-->
+        <!--rel="nofollow">-->
+        <!--&lt;!&ndash;intExhangeWagesSourcePlace&ndash;&gt;</a></div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="resize-sensor"-->
+        <!--style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: scroll; z-index: -1; visibility: hidden;">-->
+        <!--<div class="resize-sensor-expand"-->
+        <!--style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: scroll; z-index: -1; visibility: hidden;">-->
+        <!--<div style="position: absolute; left: 0px; top: 0px; width: 10px; height: 10px;"></div>-->
+        <!--</div>-->
+        <!--<div class="resize-sensor-shrink"-->
+        <!--style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: scroll; z-index: -1; visibility: hidden;">-->
+        <!--<div style="position: absolute; left: 0; top: 0; width: 200%; height: 200%"></div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="mgline teaser-3201204 type-w" style="position: relative;">-->
+        <!--<div class="image-with-text">-->
+        <!--<div class="mcimg"><a target="_blank"-->
+        <!--href="https://N%E1%BA%BFp_nh%C4%83n_b%E1%BB%8Dng_m%E1%BA%AFt_v%C3%A0_qu%E1%BA%A7ng_th%C3%A2m_s%E1%BA%BD_bi%E1%BA%BFn_m%E1%BA%A5t_trong_v%C3%B2ng_20_ph%C3%BAt/"-->
+        <!--data-hash="Gv9wxFbMgTsSwIYNAoIpTQyYGchyMQByK9DzITdo_LhfAyBbnIZLr_CBADMWSx83"-->
+        <!--rel="nofollow">-->
+        <!--<div class="image-container"><img class="mcimg" width="492" height="328"-->
+        <!--data-i="3201204"-->
+        <!--src="../static/comic_files/aHR0cDovL2ltZy11cy5tZ2lkLmNvbS90ZW1wLzIwMTktMDEtMTMvMjQ0ODE0LzZiZTE5ZjYxM2M0Nzk4YTlkNWNiNDUyNzA2YmViNWU4LmpwZz90PTE1NDczODk5OTU1Nzc_.webp">-->
+        <!--&lt;!&ndash;intExchangeWagesImagePlace&ndash;&gt; </div>-->
+        <!--</a></div>-->
+        <!--<div class="text-elements">-->
+        <!--<div class="text_on_hover">-->
+        <!--<div class="mctitle"><a target="_blank"-->
+        <!--href="https://N%E1%BA%BFp_nh%C4%83n_b%E1%BB%8Dng_m%E1%BA%AFt_v%C3%A0_qu%E1%BA%A7ng_th%C3%A2m_s%E1%BA%BD_bi%E1%BA%BFn_m%E1%BA%A5t_trong_v%C3%B2ng_20_ph%C3%BAt/"-->
+        <!--data-hash="Gv9wxFbMgTsSwIYNAoIpTQyYGchyMQByK9DzITdo_LhfAyBbnIZLr_CBADMWSx83"-->
+        <!--rel="nofollow">Nếp nhăn, bọng mắt và quầng-->
+        <!--thâm sẽ biến mất trong vòng 20 phút!</a></div>-->
+        <!--<div class="fake">-->
+        <!--<div class="mcdomain"><a target="_blank"-->
+        <!--href="https://N%E1%BA%BFp_nh%C4%83n_b%E1%BB%8Dng_m%E1%BA%AFt_v%C3%A0_qu%E1%BA%A7ng_th%C3%A2m_s%E1%BA%BD_bi%E1%BA%BFn_m%E1%BA%A5t_trong_v%C3%B2ng_20_ph%C3%BAt/"-->
+        <!--data-hash="Gv9wxFbMgTsSwIYNAoIpTQyYGchyMQByK9DzITdo_LhfAyBbnIZLr_CBADMWSx83"-->
+        <!--rel="nofollow"></a></div>-->
+        <!--</div>-->
+        <!--<div class="mgtobottom">-->
+        <!--<div class="mcdomain"><a target="_blank"-->
+        <!--href="https://N%E1%BA%BFp_nh%C4%83n_b%E1%BB%8Dng_m%E1%BA%AFt_v%C3%A0_qu%E1%BA%A7ng_th%C3%A2m_s%E1%BA%BD_bi%E1%BA%BFn_m%E1%BA%A5t_trong_v%C3%B2ng_20_ph%C3%BAt/"-->
+        <!--data-hash="Gv9wxFbMgTsSwIYNAoIpTQyYGchyMQByK9DzITdo_LhfAyBbnIZLr_CBADMWSx83"-->
+        <!--rel="nofollow">-->
+        <!--&lt;!&ndash;intExhangeWagesSourcePlace&ndash;&gt;</a></div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="resize-sensor"-->
+        <!--style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: scroll; z-index: -1; visibility: hidden;">-->
+        <!--<div class="resize-sensor-expand"-->
+        <!--style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: scroll; z-index: -1; visibility: hidden;">-->
+        <!--<div style="position: absolute; left: 0px; top: 0px; width: 10px; height: 10px;"></div>-->
+        <!--</div>-->
+        <!--<div class="resize-sensor-shrink"-->
+        <!--style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: scroll; z-index: -1; visibility: hidden;">-->
+        <!--<div style="position: absolute; left: 0; top: 0; width: 200%; height: 200%"></div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="mgline teaser-3161302 type-w" style="position: relative;">-->
+        <!--<div class="image-with-text">-->
+        <!--<div class="mcimg"><a target="_blank"-->
+        <!--href="https://engbreaking.com/B%E1%BA%A1n_b%E1%BB%8B_m%E1%BA%A5t_g%E1%BB%91c_ti%E1%BA%BFng_Anh_Ph%C6%B0%C6%A1ng_ph%C3%A1p_th%C3%B4ng_minh_n%C3%A0y_d%C3%A0nh_cho_b%E1%BA%A1n"-->
+        <!--data-hash="Gv9wxFbMgTsSwIYNAoIpTT1rnqTGamcdqGEohpSqkUrWW_6K9KDND_EQDXQioXLb"-->
+        <!--rel="nofollow">-->
+        <!--<div class="image-container"><img class="mcimg" width="492" height="328"-->
+        <!--data-i="3161302"-->
+        <!--src="../static/comic_files/aHR0cDovL2ltZy11cy5tZ2lkLmNvbS90ZW1wLzIwMTgtMTItMTcvMjYyNzQxL2I3Zjk3NWFhOWEzODJiNmNiY2I4ZmE0MzY5N2UwM2JlLmpwZWc_dD0xNTQ1MTE3Nzk4OTM0.webp">-->
+        <!--&lt;!&ndash;intExchangeWagesImagePlace&ndash;&gt; </div>-->
+        <!--</a></div>-->
+        <!--<div class="text-elements">-->
+        <!--<div class="text_on_hover">-->
+        <!--<div class="mctitle"><a target="_blank"-->
+        <!--href="https://engbreaking.com/B%E1%BA%A1n_b%E1%BB%8B_m%E1%BA%A5t_g%E1%BB%91c_ti%E1%BA%BFng_Anh_Ph%C6%B0%C6%A1ng_ph%C3%A1p_th%C3%B4ng_minh_n%C3%A0y_d%C3%A0nh_cho_b%E1%BA%A1n"-->
+        <!--data-hash="Gv9wxFbMgTsSwIYNAoIpTT1rnqTGamcdqGEohpSqkUrWW_6K9KDND_EQDXQioXLb"-->
+        <!--rel="nofollow">Bạn bị mất gốc tiếng Anh?-->
+        <!--Phương pháp thông minh này dành cho bạn</a></div>-->
+        <!--<div class="fake">-->
+        <!--<div class="mcdomain"><a target="_blank"-->
+        <!--href="https://engbreaking.com/B%E1%BA%A1n_b%E1%BB%8B_m%E1%BA%A5t_g%E1%BB%91c_ti%E1%BA%BFng_Anh_Ph%C6%B0%C6%A1ng_ph%C3%A1p_th%C3%B4ng_minh_n%C3%A0y_d%C3%A0nh_cho_b%E1%BA%A1n"-->
+        <!--data-hash="Gv9wxFbMgTsSwIYNAoIpTT1rnqTGamcdqGEohpSqkUrWW_6K9KDND_EQDXQioXLb"-->
+        <!--rel="nofollow">engbreaking.com</a>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="mgtobottom">-->
+        <!--<div class="mcdomain"><a target="_blank"-->
+        <!--href="https://engbreaking.com/B%E1%BA%A1n_b%E1%BB%8B_m%E1%BA%A5t_g%E1%BB%91c_ti%E1%BA%BFng_Anh_Ph%C6%B0%C6%A1ng_ph%C3%A1p_th%C3%B4ng_minh_n%C3%A0y_d%C3%A0nh_cho_b%E1%BA%A1n"-->
+        <!--data-hash="Gv9wxFbMgTsSwIYNAoIpTT1rnqTGamcdqGEohpSqkUrWW_6K9KDND_EQDXQioXLb"-->
+        <!--rel="nofollow">-->
+        <!--&lt;!&ndash;intExhangeWagesSourcePlace&ndash;&gt;engbreaking.com</a></div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="resize-sensor"-->
+        <!--style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: scroll; z-index: -1; visibility: hidden;">-->
+        <!--<div class="resize-sensor-expand"-->
+        <!--style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: scroll; z-index: -1; visibility: hidden;">-->
+        <!--<div style="position: absolute; left: 0px; top: 0px; width: 10px; height: 10px;"></div>-->
+        <!--</div>-->
+        <!--<div class="resize-sensor-shrink"-->
+        <!--style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: scroll; z-index: -1; visibility: hidden;">-->
+        <!--<div style="position: absolute; left: 0; top: 0; width: 200%; height: 200%"></div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="mgline teaser-3259294 type-w" style="position: relative;">-->
+        <!--<div class="image-with-text">-->
+        <!--<div class="mcimg"><a target="_blank"-->
+        <!--href="https://B%E1%BA%A1n_c%C3%B3_th%E1%BB%83_d%E1%BB%85_d%C3%A0ng_kh%E1%BA%AFc_ph%E1%BB%A5c_th%E1%BB%8B_l%E1%BB%B1c_v%E1%BB%9Bi_c%C3%A1c_gi%E1%BB%8Dt_t%E1%BB%B1_nhi%C3%AAn_n%C3%A0y/"-->
+        <!--data-hash="Gv9wxFbMgTsSwIYNAoIpTTaJZwEM-4IQpPKRBg4_66bEKvhEYFpFO3pn2giBEeT1"-->
+        <!--rel="nofollow">-->
+        <!--<div class="image-container"><img class="mcimg" width="492" height="328"-->
+        <!--data-i="3259294"-->
+        <!--src="../static/comic_files/aHR0cDovL2ltZy11cy5tZ2lkLmNvbS90ZWFzZXIvMjAxOS0wMi0wNS8xNTEyMDQvODM0OTAwODdiODU5NjcxNDljNDM5YzIyMWFiYTg1OGIucG5nP3Q9MTU0OTM3NDcyMTAzNQ__.webp">-->
+        <!--&lt;!&ndash;intExchangeWagesImagePlace&ndash;&gt; </div>-->
+        <!--</a></div>-->
+        <!--<div class="text-elements">-->
+        <!--<div class="text_on_hover">-->
+        <!--<div class="mctitle"><a target="_blank"-->
+        <!--href="https://B%E1%BA%A1n_c%C3%B3_th%E1%BB%83_d%E1%BB%85_d%C3%A0ng_kh%E1%BA%AFc_ph%E1%BB%A5c_th%E1%BB%8B_l%E1%BB%B1c_v%E1%BB%9Bi_c%C3%A1c_gi%E1%BB%8Dt_t%E1%BB%B1_nhi%C3%AAn_n%C3%A0y/"-->
+        <!--data-hash="Gv9wxFbMgTsSwIYNAoIpTTaJZwEM-4IQpPKRBg4_66bEKvhEYFpFO3pn2giBEeT1"-->
+        <!--rel="nofollow">Bạn có thể dễ dàng khắc phục-->
+        <!--thị lực với các giọt tự nhiên này</a></div>-->
+        <!--<div class="fake">-->
+        <!--<div class="mcdomain"><a target="_blank"-->
+        <!--href="https://B%E1%BA%A1n_c%C3%B3_th%E1%BB%83_d%E1%BB%85_d%C3%A0ng_kh%E1%BA%AFc_ph%E1%BB%A5c_th%E1%BB%8B_l%E1%BB%B1c_v%E1%BB%9Bi_c%C3%A1c_gi%E1%BB%8Dt_t%E1%BB%B1_nhi%C3%AAn_n%C3%A0y/"-->
+        <!--data-hash="Gv9wxFbMgTsSwIYNAoIpTTaJZwEM-4IQpPKRBg4_66bEKvhEYFpFO3pn2giBEeT1"-->
+        <!--rel="nofollow"></a></div>-->
+        <!--</div>-->
+        <!--<div class="mgtobottom">-->
+        <!--<div class="mcdomain"><a target="_blank"-->
+        <!--href="https://B%E1%BA%A1n_c%C3%B3_th%E1%BB%83_d%E1%BB%85_d%C3%A0ng_kh%E1%BA%AFc_ph%E1%BB%A5c_th%E1%BB%8B_l%E1%BB%B1c_v%E1%BB%9Bi_c%C3%A1c_gi%E1%BB%8Dt_t%E1%BB%B1_nhi%C3%AAn_n%C3%A0y/"-->
+        <!--data-hash="Gv9wxFbMgTsSwIYNAoIpTTaJZwEM-4IQpPKRBg4_66bEKvhEYFpFO3pn2giBEeT1"-->
+        <!--rel="nofollow">-->
+        <!--&lt;!&ndash;intExhangeWagesSourcePlace&ndash;&gt;</a></div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="resize-sensor"-->
+        <!--style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: scroll; z-index: -1; visibility: hidden;">-->
+        <!--<div class="resize-sensor-expand"-->
+        <!--style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: scroll; z-index: -1; visibility: hidden;">-->
+        <!--<div style="position: absolute; left: 0px; top: 0px; width: 10px; height: 10px;"></div>-->
+        <!--</div>-->
+        <!--<div class="resize-sensor-shrink"-->
+        <!--style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: scroll; z-index: -1; visibility: hidden;">-->
+        <!--<div style="position: absolute; left: 0; top: 0; width: 200%; height: 200%"></div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<style class="MarketGidC335852" type="text/css">-->
+        <!--@font-face {-->
+        <!--font-family: 'Roboto';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 400;-->
+        <!--src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v15/mUdRVCMHGKUBOACHGTH1g-vvDin1pK8aKteLpeZ5c0A.woff) format('woff');-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 400;-->
+        <!--src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/opensans/v10/K88pR3goAWT7BTt32Z01m1tXRa8TVwTICgirnJhmVJw.woff2) format('woff2');-->
+        <!--unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 400;-->
+        <!--src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/opensans/v10/RjgO7rYTmqiVp7vzi-Q5UVtXRa8TVwTICgirnJhmVJw.woff2) format('woff2');-->
+        <!--unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 400;-->
+        <!--src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/opensans/v10/u-WUoqrET9fUeobQW7jkRVtXRa8TVwTICgirnJhmVJw.woff2) format('woff2');-->
+        <!--unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 400;-->
+        <!--src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/opensans/v10/cJZKeOuBrn4kERxqtaUH3VtXRa8TVwTICgirnJhmVJw.woff2) format('woff2');-->
+        <!--unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 700;-->
+        <!--src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzCUUniRZcd_wq8DYmIfsw2A.woff2) format('woff2');-->
+        <!--unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 700;-->
+        <!--src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzOXREeHhJi4GEUJI9ob_ak4.woff2) format('woff2');-->
+        <!--unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 700;-->
+        <!--src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzBUOjZSKWg4xBWp_C_qQx0o.woff2) format('woff2');-->
+        <!--unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 700;-->
+        <!--src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzOgdm0LZdjqr5-oayXSOefg.woff2) format('woff2');-->
+        <!--unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mgresponsive {-->
+        <!--display: inherit;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mgbox {-->
+        <!--padding: 0 !important;-->
+        <!--position: relative !important;-->
+        <!--text-align: center;-->
+        <!--vertical-align: top !important;-->
+        <!--margin: 0 auto;-->
+        <!--border-style: solid;-->
+        <!--border-width: 0px;-->
+        <!--border-color: ;-->
+        <!--background-color: ;-->
+        <!--display: -ms-flexbox;-->
+        <!--display: -webkit-flex;-->
+        <!--display: flex;-->
+        <!-- -webkit-flex-direction: row;-->
+        <!-- -ms-flex-direction: row;-->
+        <!--flex-direction: row;-->
+        <!-- -webkit-flex-wrap: wrap;-->
+        <!-- -ms-flex-wrap: wrap;-->
+        <!--flex-wrap: wrap;-->
+        <!--line-height: 100% !important;-->
+        <!--transition: none !important;-->
+        <!--box-sizing: border-box;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mgbox {-->
+        <!--width: 100%;-->
+        <!--max-width: 100%;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 div.mcimg {-->
+        <!--padding: 0px;-->
+        <!--text-align: center;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 img.mcimg {-->
+        <!--border-style: solid;-->
+        <!--border-color: #ffffff;-->
+        <!--border-width: 0px;-->
+        <!--width: 100% !important;-->
+        <!--height: auto !important;-->
+        <!--max-width: 492px;-->
+        <!--max-height: 328px;-->
+        <!--box-sizing: border-box;-->
+        <!--display: block;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mctitle {-->
+        <!--margin-top: 10px;-->
+        <!--text-align: left;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mctitle a {-->
+        <!--font-weight: normal;-->
+        <!--font-size: 17px;-->
+        <!--line-height: 17px;-->
+        <!--font-style: normal;-->
+        <!--text-decoration: none;-->
+        <!--color: #515150;-->
+        <!--font-family: Roboto;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mcdesc {-->
+        <!--display: none;-->
+        <!--text-align: center;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mcdesc a {-->
+        <!--font-weight: normal;-->
+        <!--font-size: 12px;-->
+        <!--line-height: 12px;-->
+        <!--font-style: normal;-->
+        <!--text-decoration: none;-->
+        <!--color: #666666;-->
+        <!--font-family: 'Open Sans', sans-serif;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mcdomain {-->
+        <!--display: block;-->
+        <!--text-align: center;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mcdomain a {-->
+        <!--font-weight: normal;-->
+        <!--font-size: 10px;-->
+        <!--line-height: 10px;-->
+        <!--font-style: normal;-->
+        <!--text-decoration: none;-->
+        <!--color: #bbbbbb;-->
+        <!--font-family: Roboto;-->
+        <!--padding: 4px;-->
+        <!--display: block;-->
+        <!--overflow: hidden;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mcdomain a img.mcimgsrc {-->
+        <!--vertical-align: bottom;-->
+        <!--margin-bottom: -3px;-->
+        <!--height: 20px;-->
+        <!--width: 20px;-->
+        <!--display: inline-block;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mgline {-->
+        <!--background: none repeat scroll 0 0;-->
+        <!--background-color: ;-->
+        <!--cursor: pointer;-->
+        <!--display: inline-block;-->
+        <!--overflow: hidden;-->
+        <!--zoom: 1;-->
+        <!--display: inline;-->
+        <!--padding: 0 !important;-->
+        <!--border-style: solid;-->
+        <!--border-color: #ffffff;-->
+        <!--border-width: 0px;-->
+        <!--width: 24%;-->
+        <!--max-width: 24%;-->
+        <!--box-sizing: border-box;-->
+        <!--margin: 10px 0.5%;-->
+        <!--display: -ms-flexbox;-->
+        <!--display: -webkit-flex;-->
+        <!--display: flex;-->
+        <!-- -webkit-flex-direction: column;-->
+        <!-- -ms-flex-direction: column;-->
+        <!--flex-direction: column;-->
+        <!--word-wrap: break-word;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mgline .image-container {-->
+        <!--position: relative;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mgline .image-container .mcimgad {-->
+        <!--position: absolute;-->
+        <!--right: 0;-->
+        <!--bottom: 0;-->
+        <!--width: 20px;-->
+        <!--height: 20px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mgline {-->
+        <!--vertical-align: top;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mgline, #MarketGidComposite335852 .mgbox {-->
+        <!--min-width: 90px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mgline[max-width~="120px"] .mcdesc {-->
+        <!--display: none !important;-->
+        <!--}-->
+
+        <!--@supports not (flex-wrap: wrap) {-->
+        <!--.mgbox {-->
+        <!--display: block !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mgline {-->
+        <!--display: inline-block !important;-->
+        <!--}-->
+        <!--}-->
+
+        <!--.text-elements a {-->
+        <!--text-decoration: none;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 div.mcprice {-->
+        <!--text-align: center;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 div.mcprice span {-->
+        <!--font-weight: bold;-->
+        <!--font-size: 12px;-->
+        <!--line-height: 12px;-->
+        <!--font-style: normal;-->
+        <!--text-decoration: none;-->
+        <!--color: #ffffff;-->
+        <!--font-family: 'Open Sans', sans-serif;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 div.mgbuybox, #MarketGidComposite335852 div.mgarrowbox {-->
+        <!--display: false;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 div.mgbuybox, #MarketGidComposite335852 div.mgarrowbox, #MarketGidComposite335852 div.mcprice {-->
+        <!--display: none;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 span.mcpriceold {-->
+        <!--text-decoration: line-through !important;-->
+        <!--}-->
+
+        <!--@media (max-width: 480px) {-->
+        <!--#MarketGidComposite335852 .mgline {-->
+        <!--width: 48% !important;-->
+        <!--margin: 1% !important;-->
+        <!--max-width: 48% !important;-->
+        <!--}-->
+        <!--}-->
+
+        <!--@media (max-width: 480px) {-->
+        <!--#MarketGidComposite335852 .mgline {-->
+        <!--width: 98% !important;-->
+        <!--margin: 1% !important;-->
+        <!--max-width: 98% !important;-->
+        <!--}-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mgpopular {-->
+        <!--background-color: rgba(255, 0, 0, 0.2) !important;-->
+        <!--border-color: rgba(255, 90, 0, 0.3) !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 img.mcimg {-->
+        <!--margin: 0;-->
+        <!--opacity: 1 !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mgline {-->
+        <!--position: relative;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mgline .fake {-->
+        <!--visibility: hidden;-->
+        <!--position: relative;-->
+        <!--padding-top: 4px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mgline:hover .mctitle a {-->
+        <!--color: #2b2b2b;-->
+        <!--text-decoration: underline !important;-->
+        <!--text-decoration: none !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mgline:hover .mcpriceold + .mcprice, #MarketGidComposite335852 .mgline:hover .mcpriceold {-->
+        <!--visibility: hidden;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mgline:hover .mcdiscount {-->
+        <!--display: block;-->
+        <!--position: absolute;-->
+        <!--left: 0px;-->
+        <!--right: 0px;-->
+        <!--top: 5px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mgarrowbox {-->
+        <!--position: relative;-->
+        <!--background: #2b2b2b;-->
+        <!--width: 55%;-->
+        <!--height: 22px;-->
+        <!--margin: 0px;-->
+        <!--border-color: transparent;-->
+        <!--border-left-color: #2b2b2b;-->
+        <!--display: inline-block;-->
+        <!--font-family: 'Open Sans', sans-serif;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mgarrowbox:after {-->
+        <!--left: 100%;-->
+        <!--top: 50%;-->
+        <!--content: " ";-->
+        <!--height: 0px;-->
+        <!--width: 0px;-->
+        <!--position: absolute;-->
+        <!--pointer-events: none;-->
+        <!--margin-top: -11px;-->
+        <!--border: solid 11px;-->
+        <!--border-color: inherit;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mgbuybox {-->
+        <!--width: 40%;-->
+        <!--display: inline-block;-->
+        <!--text-align: right;-->
+        <!--font-weight: bold;-->
+        <!--font-family: 'Open Sans', sans-serif;-->
+        <!--font-size: 12px;-->
+        <!--color: #666666;-->
+        <!--text-decoration: underline;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mctitle {-->
+        <!--margin-top: 2px;-->
+        <!--line-height: 1 !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mctitle a {-->
+        <!--line-height: 110% !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mctitle a {-->
+        <!--line-height: 22px !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mcdesc {-->
+        <!--margin-top: 0;-->
+        <!--margin-bottom: 2px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mcdesc a {-->
+        <!--line-height: 1.5 !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 div.mcprice {-->
+        <!--margin-top: 5px;-->
+        <!--line-height: 12px !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 div.mgbuybox, #MarketGidComposite335852 div.mgarrowbox {-->
+        <!--display: none;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mgtobottom {-->
+        <!--position: absolute;-->
+        <!--bottom: 0;-->
+        <!--width: 100%;-->
+        <!--text-align: left;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mgline .image-with-text, #MarketGidComposite335852 .mgline .mgtobottom {-->
+        <!--width: 100% !important;-->
+        <!--margin: 0 auto;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mgline .image-with-text, #MarketGidComposite335852 .mgline .mgtobottom {-->
+        <!--max-width: 492px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mghead {-->
+        <!--font-family: Roboto !important;-->
+        <!--color: #2b397b;-->
+        <!--font-size: 17px !important;-->
+        <!--text-transform: uppercase !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mghead {-->
+        <!--margin: 5px 0 0 0 !important;-->
+        <!--font-weight: 600 !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mcpriceold {-->
+        <!--float: left;-->
+        <!--padding-left: 5px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mcdiscount {-->
+        <!--display: none;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mcdomain {-->
+        <!--display: block;-->
+        <!--overflow: hidden;-->
+        <!--padding: 4px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mcdomain a {-->
+        <!--padding: 0px;-->
+        <!--display: block;-->
+        <!--padding-top: 5px;-->
+        <!--padding-bottom: 2px;-->
+        <!--overflow: hidden;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 div.mcprice, #MarketGidComposite335852 div.mcriceold {-->
+        <!--font-weight: bold;-->
+        <!--font-size: 12px;-->
+        <!--line-height: 12px;-->
+        <!--font-style: normal;-->
+        <!--text-decoration: none;-->
+        <!--color: #ffffff;-->
+        <!--font-family: 'Open Sans', sans-serif;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 div.mcpriceold {-->
+        <!--text-decoration: line-through !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mgline[max-width~="120px"] .mgarrowbox, #MarketGidComposite335852 .mgline[max-width~="120px"] .mgbuybox {-->
+        <!--display: none !important;-->
+        <!--}-->
+
+        <!--.image-with-text {-->
+        <!--min-height: 1px;-->
+        <!--}-->
+
+        <!--@media (max-width: 480px) {-->
+        <!--#MarketGidComposite335852 .mgline {-->
+        <!--width: 98% !important;-->
+        <!--margin: 1% !important;-->
+        <!--max-width: 98% !important;-->
+        <!--}-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mg-slider-overlay {-->
+        <!--overflow: hidden;-->
+        <!--position: relative;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mg-slider-overlay .mg-slider-wrap {-->
+        <!--min-height: 200px;-->
+        <!--position: relative;-->
+        <!--width: 100%;-->
+        <!-- -webkit-transform: translate3D(0, 0, 0);-->
+        <!-- -moz-transform: translate3D(0, 0, 0);-->
+        <!-- -ms-transform: translate3D(0, 0, 0);-->
+        <!-- -o-transform: translate3D(0, 0, 0);-->
+        <!--transform: translate3D(0, 0, 0);-->
+        <!-- -webkit-transition-duration: 200ms;-->
+        <!-- -moz-transition-duration: 200ms;-->
+        <!-- -ms-transition-duration: 200ms;-->
+        <!-- -o-transition-duration: 200ms;-->
+        <!--transition-duration: 200ms;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mg-slider-overlay .mg-slider-wrap .mg-slider-box {-->
+        <!--left: 0;-->
+        <!--top: 0;-->
+        <!--position: absolute;-->
+        <!--width: 100%;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mg-pagination {-->
+        <!--text-align: center;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mg-pagination .mg-pagination-list {-->
+        <!--display: inline-block;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mg-pagination .mg-pagination-item {-->
+        <!--cursor: pointer;-->
+        <!--display: inline-block;-->
+        <!--*display: inline;-->
+        <!--*zoom: 1;-->
+        <!--width: 8px;-->
+        <!--height: 8px;-->
+        <!--margin: 0 2px;-->
+        <!--background: #ddd;-->
+        <!--border-radius: 50%;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mg-pagination .mg-pagination-item-prev, #MarketGidComposite335852 .mg-pagination .mg-pagination-item-next {-->
+        <!--background: #f7f7f7;-->
+        <!--border: 1px solid #cecece;-->
+        <!--border-radius: 2px;-->
+        <!--cursor: pointer;-->
+        <!--display: inline-block;-->
+        <!--height: 11px;-->
+        <!--margin: 0 10px;-->
+        <!--padding: 5px 0;-->
+        <!--text-align: center;-->
+        <!--vertical-align: middle;-->
+        <!--width: 29px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mg-pagination .mg-pagination-item-prev:after, #MarketGidComposite335852 .mg-pagination .mg-pagination-item-next:after {-->
+        <!--background: url(https://images.dable.io/static/i/prevnext2.png?3) no-repeat 0 0;-->
+        <!--background-size: 17px 11px;-->
+        <!--content: "";-->
+        <!--display: inline-block;-->
+        <!--height: 13px;-->
+        <!--width: 9px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mg-pagination .mg-pagination-item-next:after {-->
+        <!--background-position: -10px 0;-->
+        <!--width: 8px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mg-pagination .mg-pagination-item-current {-->
+        <!--background: #508eef;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mgheader {-->
+        <!--border-bottom: 1px solid #2b397b !important;-->
+        <!--padding-bottom: 3px;-->
+        <!--margin-bottom: 10px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 div.mcimg a.close-informer {-->
+        <!--width: 14px;-->
+        <!--height: 14px;-->
+        <!--background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyFpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDIxIDc5LjE1NDkxMSwgMjAxMy8xMC8yOS0xMTo0NzoxNiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo5NzI0ODBDMzY3ODcxMUU1OEM4RUU2RUJCOUREODIyQiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo5NzI0ODBDNDY3ODcxMUU1OEM4RUU2RUJCOUREODIyQiI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjk3MjQ4MEMxNjc4NzExRTU4QzhFRTZFQkI5REQ4MjJCIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjk3MjQ4MEMyNjc4NzExRTU4QzhFRTZFQkI5REQ4MjJCIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+uNcpEQAAAHxJREFUeNqckgEKwCAIRe3fYjfKc2zX6hydaLRbbDnGkLDIPggl/5lKIcbIRJRqbDSnUmOHE6LPm+CEfhj6lnN+o5WVh1VOm6xColCXc/cgLWYev9gaejnQojCab5RDzyDt6RantqoBaz5zq54ZywJ3CXjIwQGd8skfAQYALdQqftYulocAAAAASUVORK5CYIJ0ZW50Ij4NCiA8ZGl2IGNsYXNzPSJjb250ZW50LWNvbnRhaW5lciI+PGZpZWxkc2V0Pg0KICA8aDI+NTAyIC0gV2ViIHNlcnZlciByZWNlaXZlZCBhbiBpbnZhbGlkIHJlc3BvbnNlIHdoaWxlIGFjdGluZyBhcyBhIGdhdGV3YXkgb3IgcHJveHkgc2VydmVyLjwvaDI+DQogIDxoMz5UaGVyZSBpcyBhIHByb2JsZW0gd2l0aCB0aGUgcGFnZSB5b3UgYXJlIGxvb2tpbmcgZm9yLCBhbmQgaXQgY2Fubm90IGJlIGRpc3BsYXllZC4gV2hlbiB0aGUgV2ViIHNlcnZlciAod2hpbGUgYWN0aW5nIGFzIGEgZ2F0ZXdheSBvciBwcm94eSkgY29udGFjdGVkIHRoZSB1cHN0cmVhbSBjb250ZW50IHNlcnZlciwgaXQgcmVjZWl2ZWQgYW4gaW52YWxpZCByZXNwb25zZSBmcm9tIHRoZSBjb250ZW50IHNlcnZlci48L2gzPg0KIDwvZmllbGRzZXQ+PC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==");-->
+        <!--display: block;-->
+        <!--opacity: 0;-->
+        <!--position: absolute;-->
+        <!--right: 3px;-->
+        <!--top: 3px;-->
+        <!--z-index: 1;-->
+        <!--cursor: pointer;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 div.mgline:hover a.close-informer {-->
+        <!--opacity: 0.7;-->
+        <!-- -moz-transition: all 0.3s ease-out;-->
+        <!-- -o-transition: all 0.3s ease-out;-->
+        <!-- -webkit-transition: all 0.3s ease-out;-->
+        <!-- -ms-transition: all 0.3s ease-out;-->
+        <!--transition: all 0.3s ease-out;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 div.mgline a.close-informer:hover {-->
+        <!--opacity: 1;-->
+        <!-- -moz-transition: all 0.3s ease-out;-->
+        <!-- -o-transition: all 0.3s ease-out;-->
+        <!-- -webkit-transition: all 0.3s ease-out;-->
+        <!-- -ms-transition: all 0.3s ease-out;-->
+        <!--transition: all 0.3s ease-out;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 div.mcimg {-->
+        <!--position: relative;-->
+        <!--display: inline-block-->
+        <!--}-->
+
+        <!--div.image-with-price {-->
+        <!--position: relative;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335852 .mgline .image-container {-->
+        <!--width: auto;-->
+        <!--margin: 0 auto;-->
+        <!--position: relative;-->
+        <!--}</style>-->
+        <!--</div>-->
+        <!--<script async="" src="../static/comic_files/beacon.js.download"></script>-->
+        <!--<script async="" src="../static/comic_files/beacon.js.download"></script>-->
+        <!--<script async="" src="../static/comic_files/beacon.js.download"></script>-->
+        <!--<script type="text/javascript" charset="utf-8" src="../static/comic_files/1"></script>-->
+        <!--<script charset="utf-8" src="../static/comic_files/i.js.download" type="text/javascript"-->
+        <!--async=""></script>-->
+        <!--</div>&lt;!&ndash; Composite End &ndash;&gt;</div>-->
+        <!--</div>-->
+        <!--<div class="hidden-lg text-center w320 ads-320-100-backup-2" id="ads-320-100-backup-2"></div>-->
+        <!--</div>-->
+        <div class="col-xs-12" id="list-chapter">
+            <div class="title-list"><h2>Danh sách chương</h2></div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <ul class="list-chapter">
+                        {% for chapter in chapterList1 %}
+                        <li>
+                            <span class="glyphicon glyphicon-certificate"></span>
+                            <a href="{{ config.url }}{{ comic.link}}/{{ chapter.link }}/"
+                               title="{{ comic.name }} - Chương {{ chapter.chapter }}: {{ chapter.name }}">
+                                {% if chapter.book is not none %}
+                                <span class="book-text">
+                                    <span>Quyển </span>
+                                </span>{{ chapter.book }} -
+                                {% endif %}
+                                <span class="chapter-text">
+                                    <span>Chương </span>
+                                </span>{{ chapter.chapter }}: {{ chapter.name }}
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% if chapterList2|length > 0 %}
+                <div class="col-xs-12 col-sm-6 col-md-6">
+                    <ul class="list-chapter">
+                        {% for chapter in chapterList2 %}
+                        <li>
+                            <span class="glyphicon glyphicon-certificate"></span>
+                            <a href="{{ config.url }}{{ comic.link}}/{{ chapter.link }}/"
+                               title="{{ comic.name }} - Chương {{ chapter.chapter }}: {{ chapter.name }}">
+                                {% if chapter.book is not none %}
+                                <span class="book-text">
+                                    <span>Quyển </span>
+                                </span>{{ chapter.book }} -
+                                {% endif %}
+                                <span class="chapter-text">
+                                    <span>Chương </span>
+                                </span>{{ chapter.chapter }}: {{ chapter.name }}
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+            <input id="truyen-id" type="hidden" value="4451"><input id="total-page" type="hidden" value="41"><input
+                id="truyen-ascii" type="hidden" value="{{ comic.link }}"><input id="truyen-comment" type="hidden"
+                                                                          value="{{ comic.link }}">
+            <ul class="pagination pagination-sm">
+                {% if leftIndex > 1 %}
+                <li><a href="?page=1"
+                       title="{{ comic.name }} - Trang {{ index }}">Đầu<span class="arrow">«</span></a></li>
+                {% endif %}
+                {% if leftIndex > 1 or index > leftIndex %}
+                <li><a href="?page={{ index-1 }}"
+                       title="{{ comic.name }} - Trang {{ index-1 }}"><span class="sr-only">Trang trước</span><span
+                        class="glyphicon glyphicon-menu-left"></span></a></li>
+                {% endif %}
+                {% for currentIndex in range(leftIndex, rightIndex + 1) %}
+                {% if currentIndex == index %}
+                <li class="active"><span>{{ index }}<span class="sr-only"> (đang xem)</span></span></li>
+                {% else %}
+                <li><a href="?page={{ currentIndex}}"
+                       title="{{ comic.name }} - Trang {{ currentIndex }}">{{ currentIndex }}</a></li>
+                {% endif %}
+                {% endfor %}
+                {% if rightIndex < total or index < rightIndex %}
+                <li><a href="?page={{ index + 1}}"
+                       title="{{ comic.name }} - Trang {{ index + 1 }}"><span class="sr-only">Trang tiếp</span><span
+                        class="glyphicon glyphicon-menu-right"></span></a></li>
+                {% endif %}
+                {% if rightIndex < total %}
+                <li><a href="?page={{ total}}"
+                       title="{{ comic.name }} - Trang {{ total }}">Cuối
+                    <span class="arrow">»</span></a></li>
+                {% endif %}
+                {% if leftIndex > 1 or rightIndex < total %}
+                <li class="dropup page-nav"><a href="javascript:void(0)" data-toggle="dropdown">Chọn trang <span
+                        class="caret"></span></a>
+                    <div class="dropdown-menu dropdown-menu-right" role="menu">
+                        <form action="https://truyenfull.vn/long-trieu/" name="page_jump" id="page_jump"
+                              method="get">
+                            <div class="input-group"><input name="page_type" type="hidden" value=""><input
+                                    name="truyen" type="hidden" value="long-trieu"><input name="filter"
+                                                                                          type="hidden"
+                                                                                          value=""><input
+                                    class="form-control" name="page" type="number" placeholder="Số trang..."
+                                    value=""><span class="input-group-btn"><button class="btn btn-default"
+                                                                                   type="submit">Đi</button></span>
+                            </div>
+                        </form>
+                    </div>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+        <!--<div class="col-xs-12 comment-box">-->
+        <!--<div class="title-list"><h2>Bình luận truyện</h2></div>-->
+        <!--<button id="view-comments" class="btn btn-info hidden-md hidden-lg">Mở bình luận</button>-->
+        <!--<div class="col-xs-12">-->
+        <!--<div class="row" id="fb-comment-story">-->
+        <!--<div class="fb-comments fb_iframe_widget fb_iframe_widget_fluid_desktop"-->
+        <!--data-href="http://truyenfull.vn/long-trieu/" data-width="100%" width="100%"-->
+        <!--data-numposts="5" data-colorscheme="light" fb-xfbml-state="rendered"-->
+        <!--fb-iframe-plugin-query="app_id=333184773543272&amp;color_scheme=light&amp;container_width=832&amp;height=100&amp;href=http%3A%2F%2Ftruyenfull.vn%2Flong-trieu%2F&amp;locale=vi_VN&amp;numposts=5&amp;sdk=joey"-->
+        <!--style="width: 100%;"><span style="vertical-align: bottom; width: 100%; height: 669px;"><iframe-->
+        <!--name="f2c094deb538b4" width="1000px" height="100px" frameborder="0"-->
+        <!--allowtransparency="true" allowfullscreen="true" scrolling="no" allow="encrypted-media"-->
+        <!--title="fb:comments Facebook Social Plugin" src="../static/comic_files/comments.html"-->
+        <!--style="border: none; visibility: visible; width: 0px; height: 669px;"-->
+        <!--class=" fb_iframe_widget_lift"></iframe></span></div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+    </div>
+    <div class="visible-md-block visible-lg-block col-md-3 text-center col-truyen-side">
+        <!--<div class="ads-300-250-top">&lt;!&ndash; Composite Start &ndash;&gt;-->
+        <!--<div id="M182108ScriptRootC335849" style="">-->
+        <!--<div id="M182108PreloadC335849" style="display: none;"></div>-->
+        <!--<iframe style="display: none;" src="../static/comic_files/saved_resource(1).html"></iframe>-->
+        <!--<div id="MarketGidComposite335849" style="height: auto; overflow: visible;">-->
+        <!--<style class="MarketGidC335849" type="text/css">-->
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 400;-->
+        <!--src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/opensans/v10/K88pR3goAWT7BTt32Z01m1tXRa8TVwTICgirnJhmVJw.woff2) format('woff2');-->
+        <!--unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 400;-->
+        <!--src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/opensans/v10/RjgO7rYTmqiVp7vzi-Q5UVtXRa8TVwTICgirnJhmVJw.woff2) format('woff2');-->
+        <!--unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 400;-->
+        <!--src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/opensans/v10/u-WUoqrET9fUeobQW7jkRVtXRa8TVwTICgirnJhmVJw.woff2) format('woff2');-->
+        <!--unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 400;-->
+        <!--src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/opensans/v10/cJZKeOuBrn4kERxqtaUH3VtXRa8TVwTICgirnJhmVJw.woff2) format('woff2');-->
+        <!--unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 700;-->
+        <!--src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzCUUniRZcd_wq8DYmIfsw2A.woff2) format('woff2');-->
+        <!--unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 700;-->
+        <!--src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzOXREeHhJi4GEUJI9ob_ak4.woff2) format('woff2');-->
+        <!--unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 700;-->
+        <!--src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzBUOjZSKWg4xBWp_C_qQx0o.woff2) format('woff2');-->
+        <!--unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 700;-->
+        <!--src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzOgdm0LZdjqr5-oayXSOefg.woff2) format('woff2');-->
+        <!--unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mgresponsive {-->
+        <!--display: inherit;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mgbox {-->
+        <!--padding: 0 !important;-->
+        <!--position: relative !important;-->
+        <!--text-align: center;-->
+        <!--vertical-align: top !important;-->
+        <!--margin: 0 auto;-->
+        <!--border-style: solid;-->
+        <!--border-width: 0px;-->
+        <!--border-color: ;-->
+        <!--background-color: ;-->
+        <!--display: -ms-flexbox;-->
+        <!--display: -webkit-flex;-->
+        <!--display: flex;-->
+        <!-- -webkit-flex-direction: row;-->
+        <!-- -ms-flex-direction: row;-->
+        <!--flex-direction: row;-->
+        <!-- -webkit-flex-wrap: wrap;-->
+        <!-- -ms-flex-wrap: wrap;-->
+        <!--flex-wrap: wrap;-->
+        <!--line-height: 100% !important;-->
+        <!--transition: none !important;-->
+        <!--box-sizing: border-box;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mgbox {-->
+        <!--width: 100%;-->
+        <!--max-width: 100%;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ div.mcimg {-->
+        <!--padding: 0px;-->
+        <!--text-align: center;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ img.mcimg {-->
+        <!--border-style: solid;-->
+        <!--border-color: #ffffff;-->
+        <!--border-width: 0px;-->
+        <!--width: 100% !important;-->
+        <!--height: auto !important;-->
+        <!--max-width: 492px;-->
+        <!--max-height: 328px;-->
+        <!--box-sizing: border-box;-->
+        <!--display: block;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mctitle {-->
+        <!--margin-top: 10px;-->
+        <!--text-align: left;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mctitle a {-->
+        <!--font-weight: bold;-->
+        <!--font-size: 15px;-->
+        <!--line-height: 15px;-->
+        <!--font-style: normal;-->
+        <!--text-decoration: none;-->
+        <!--color: #333333;-->
+        <!--font-family: 'Open Sans', sans-serif;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mcdesc {-->
+        <!--display: none;-->
+        <!--text-align: center;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mcdesc a {-->
+        <!--font-weight: normal;-->
+        <!--font-size: 12px;-->
+        <!--line-height: 12px;-->
+        <!--font-style: normal;-->
+        <!--text-decoration: none;-->
+        <!--color: #666666;-->
+        <!--font-family: 'Open Sans', sans-serif;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mcdomain {-->
+        <!--display: block;-->
+        <!--text-align: center;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mcdomain a {-->
+        <!--font-weight: normal;-->
+        <!--font-size: 10px;-->
+        <!--line-height: 10px;-->
+        <!--font-style: normal;-->
+        <!--text-decoration: none;-->
+        <!--color: #bbbbbb;-->
+        <!--font-family: 'Open Sans', sans-serif;-->
+        <!--padding: 4px;-->
+        <!--display: block;-->
+        <!--overflow: hidden;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mcdomain a img.mcimgsrc {-->
+        <!--vertical-align: bottom;-->
+        <!--margin-bottom: -3px;-->
+        <!--height: 20px;-->
+        <!--width: 20px;-->
+        <!--display: inline-block;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mgline {-->
+        <!--background: none repeat scroll 0 0;-->
+        <!--background-color: ;-->
+        <!--cursor: pointer;-->
+        <!--display: inline-block;-->
+        <!--overflow: hidden;-->
+        <!--zoom: 1;-->
+        <!--display: inline;-->
+        <!--padding: 0 !important;-->
+        <!--border-style: solid;-->
+        <!--border-color: #ffffff;-->
+        <!--border-width: 0px;-->
+        <!--width: 99%;-->
+        <!--max-width: 99%;-->
+        <!--box-sizing: border-box;-->
+        <!--margin: 10px 0.5%;-->
+        <!--display: -ms-flexbox;-->
+        <!--display: -webkit-flex;-->
+        <!--display: flex;-->
+        <!-- -webkit-flex-direction: column;-->
+        <!-- -ms-flex-direction: column;-->
+        <!--flex-direction: column;-->
+        <!--word-wrap: break-word;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mgline .image-container {-->
+        <!--position: relative;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mgline .image-container .mcimgad {-->
+        <!--position: absolute;-->
+        <!--right: 0;-->
+        <!--bottom: 0;-->
+        <!--width: 20px;-->
+        <!--height: 20px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mgline {-->
+        <!--vertical-align: top;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mgline, #MarketGidComposite335849_ .mgbox {-->
+        <!--min-width: 90px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mgline[max-width~="120px"] .mcdesc {-->
+        <!--display: none !important;-->
+        <!--}-->
+
+        <!--@supports not (flex-wrap: wrap) {-->
+        <!--.mgbox {-->
+        <!--display: block !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mgline {-->
+        <!--display: inline-block !important;-->
+        <!--}-->
+        <!--}-->
+
+        <!--.text-elements a {-->
+        <!--text-decoration: none;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ div.mcprice {-->
+        <!--text-align: center;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ div.mcprice span {-->
+        <!--font-weight: bold;-->
+        <!--font-size: 12px;-->
+        <!--line-height: 12px;-->
+        <!--font-style: normal;-->
+        <!--text-decoration: none;-->
+        <!--color: #ffffff;-->
+        <!--font-family: 'Open Sans', sans-serif;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ div.mgbuybox, #MarketGidComposite335849_ div.mgarrowbox {-->
+        <!--display: false;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ div.mgbuybox, #MarketGidComposite335849_ div.mgarrowbox, #MarketGidComposite335849_ div.mcprice {-->
+        <!--display: none;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ span.mcpriceold {-->
+        <!--text-decoration: line-through !important;-->
+        <!--}-->
+
+        <!--@media (max-width: 480px) {-->
+        <!--#MarketGidComposite335849_ .mgline {-->
+        <!--width: 48% !important;-->
+        <!--margin: 1% !important;-->
+        <!--max-width: 48% !important;-->
+        <!--}-->
+        <!--}-->
+
+        <!--@media (max-width: 480px) {-->
+        <!--#MarketGidComposite335849_ .mgline {-->
+        <!--width: 98% !important;-->
+        <!--margin: 1% !important;-->
+        <!--max-width: 98% !important;-->
+        <!--}-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mgpopular {-->
+        <!--background-color: rgba(255, 0, 0, 0.2) !important;-->
+        <!--border-color: rgba(255, 90, 0, 0.3) !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ img.mcimg {-->
+        <!--margin: 0;-->
+        <!--opacity: 1 !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mgline {-->
+        <!--position: relative;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mgline .fake {-->
+        <!--visibility: hidden;-->
+        <!--position: relative;-->
+        <!--padding-top: 4px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mgline:hover .mctitle a {-->
+        <!--color: #2b2b2b;-->
+        <!--text-decoration: underline !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mgline:hover .mcpriceold + .mcprice, #MarketGidComposite335849_ .mgline:hover .mcpriceold {-->
+        <!--visibility: hidden;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mgline:hover .mcdiscount {-->
+        <!--display: block;-->
+        <!--position: absolute;-->
+        <!--left: 0px;-->
+        <!--right: 0px;-->
+        <!--top: 5px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mgarrowbox {-->
+        <!--position: relative;-->
+        <!--background: #2b2b2b;-->
+        <!--width: 55%;-->
+        <!--height: 22px;-->
+        <!--margin: 0px;-->
+        <!--border-color: transparent;-->
+        <!--border-left-color: #2b2b2b;-->
+        <!--display: inline-block;-->
+        <!--font-family: 'Open Sans', sans-serif;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mgarrowbox:after {-->
+        <!--left: 100%;-->
+        <!--top: 50%;-->
+        <!--content: " ";-->
+        <!--height: 0px;-->
+        <!--width: 0px;-->
+        <!--position: absolute;-->
+        <!--pointer-events: none;-->
+        <!--margin-top: -11px;-->
+        <!--border: solid 11px;-->
+        <!--border-color: inherit;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mgbuybox {-->
+        <!--width: 40%;-->
+        <!--display: inline-block;-->
+        <!--text-align: right;-->
+        <!--font-weight: bold;-->
+        <!--font-family: 'Open Sans', sans-serif;-->
+        <!--font-size: 12px;-->
+        <!--color: #666666;-->
+        <!--text-decoration: underline;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mctitle {-->
+        <!--margin-top: 2px;-->
+        <!--line-height: 1 !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mctitle a {-->
+        <!--line-height: 110% !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mcdesc {-->
+        <!--margin-top: 0;-->
+        <!--margin-bottom: 2px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mcdesc a {-->
+        <!--line-height: 1.5 !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ div.mcprice {-->
+        <!--margin-top: 5px;-->
+        <!--line-height: 12px !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ div.mgbuybox, #MarketGidComposite335849_ div.mgarrowbox {-->
+        <!--display: none;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mgtobottom {-->
+        <!--position: absolute;-->
+        <!--bottom: 0;-->
+        <!--width: 100%;-->
+        <!--text-align: left;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mgline .image-with-text, #MarketGidComposite335849_ .mgline .mgtobottom {-->
+        <!--width: 100% !important;-->
+        <!--margin: 0 auto;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mgline .image-with-text, #MarketGidComposite335849_ .mgline .mgtobottom {-->
+        <!--max-width: 492px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mghead {-->
+        <!--font-family: 'Open Sans', sans-serif !important;-->
+        <!--color: #2b397b;-->
+        <!--font-size: 14px !important;-->
+        <!--text-transform: uppercase !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mcpriceold {-->
+        <!--float: left;-->
+        <!--padding-left: 5px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mcdiscount {-->
+        <!--display: none;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mcdomain {-->
+        <!--display: block;-->
+        <!--overflow: hidden;-->
+        <!--padding: 4px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mcdomain a {-->
+        <!--padding: 0px;-->
+        <!--display: block;-->
+        <!--padding-top: 5px;-->
+        <!--padding-bottom: 2px;-->
+        <!--overflow: hidden;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ div.mcprice, #MarketGidComposite335849_ div.mcriceold {-->
+        <!--font-weight: bold;-->
+        <!--font-size: 12px;-->
+        <!--line-height: 12px;-->
+        <!--font-style: normal;-->
+        <!--text-decoration: none;-->
+        <!--color: #ffffff;-->
+        <!--font-family: 'Open Sans', sans-serif;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ div.mcpriceold {-->
+        <!--text-decoration: line-through !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mgline[max-width~="120px"] .mgarrowbox, #MarketGidComposite335849_ .mgline[max-width~="120px"] .mgbuybox {-->
+        <!--display: none !important;-->
+        <!--}-->
+
+        <!--.image-with-text {-->
+        <!--min-height: 1px;-->
+        <!--}-->
+
+        <!--@media (max-width: 480px) {-->
+        <!--#MarketGidComposite335849_ .mgline {-->
+        <!--width: 98% !important;-->
+        <!--margin: 1% !important;-->
+        <!--max-width: 98% !important;-->
+        <!--}-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mg-slider-overlay {-->
+        <!--overflow: hidden;-->
+        <!--position: relative;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mg-slider-overlay .mg-slider-wrap {-->
+        <!--min-height: 200px;-->
+        <!--position: relative;-->
+        <!--width: 100%;-->
+        <!-- -webkit-transform: translate3D(0, 0, 0);-->
+        <!-- -moz-transform: translate3D(0, 0, 0);-->
+        <!-- -ms-transform: translate3D(0, 0, 0);-->
+        <!-- -o-transform: translate3D(0, 0, 0);-->
+        <!--transform: translate3D(0, 0, 0);-->
+        <!-- -webkit-transition-duration: 200ms;-->
+        <!-- -moz-transition-duration: 200ms;-->
+        <!-- -ms-transition-duration: 200ms;-->
+        <!-- -o-transition-duration: 200ms;-->
+        <!--transition-duration: 200ms;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mg-slider-overlay .mg-slider-wrap .mg-slider-box {-->
+        <!--left: 0;-->
+        <!--top: 0;-->
+        <!--position: absolute;-->
+        <!--width: 100%;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mg-pagination {-->
+        <!--text-align: center;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mg-pagination .mg-pagination-list {-->
+        <!--display: inline-block;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mg-pagination .mg-pagination-item {-->
+        <!--cursor: pointer;-->
+        <!--display: inline-block;-->
+        <!--*display: inline;-->
+        <!--*zoom: 1;-->
+        <!--width: 8px;-->
+        <!--height: 8px;-->
+        <!--margin: 0 2px;-->
+        <!--background: #ddd;-->
+        <!--border-radius: 50%;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mg-pagination .mg-pagination-item-prev, #MarketGidComposite335849_ .mg-pagination .mg-pagination-item-next {-->
+        <!--background: #f7f7f7;-->
+        <!--border: 1px solid #cecece;-->
+        <!--border-radius: 2px;-->
+        <!--cursor: pointer;-->
+        <!--display: inline-block;-->
+        <!--height: 11px;-->
+        <!--margin: 0 10px;-->
+        <!--padding: 5px 0;-->
+        <!--text-align: center;-->
+        <!--vertical-align: middle;-->
+        <!--width: 29px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mg-pagination .mg-pagination-item-prev:after, #MarketGidComposite335849_ .mg-pagination .mg-pagination-item-next:after {-->
+        <!--background: url(https://images.dable.io/static/i/prevnext2.png?3) no-repeat 0 0;-->
+        <!--background-size: 17px 11px;-->
+        <!--content: "";-->
+        <!--display: inline-block;-->
+        <!--height: 13px;-->
+        <!--width: 9px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mg-pagination .mg-pagination-item-next:after {-->
+        <!--background-position: -10px 0;-->
+        <!--width: 8px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849_ .mg-pagination .mg-pagination-item-current {-->
+        <!--background: #508eef;-->
+        <!--} </style>-->
+        <!--<div class="mgbox">-->
+        <!--<div class="mgheader" data-advert-url="https://cdn.mgid.com/advert/mgid/main.html"><span-->
+        <!--class="mghead">TIN HOT</span>-->
+        <!--<div class="mg_addad335849"><a-->
+        <!--href="https://mgid.com/advertisers?utm_source=widget&amp;utm_medium=text&amp;utm_campaign=add&amp;utm_content=335849"-->
+        <!--target="_blank" rel="nofollow"><img-->
+        <!--style="display: inline-block;width: 65px!important;"-->
+        <!--src="../static/comic_files/by_mgid_adc_logo_mini.svg" alt="Mgid" title="Mgid"></a>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<style>-->
+        <!--.mghead {-->
+        <!--font-weight: 700;-->
+        <!--font-size: 14px;-->
+        <!--text-transform: uppercase;-->
+        <!--text-align: left;-->
+        <!--font-family: "Open Sans", sans-serif;-->
+        <!--color: #4555a7;-->
+        <!--display: block;-->
+        <!--margin: 5px 0 0px 5px;-->
+        <!--float: left;-->
+        <!--}-->
+
+        <!--.mgheader {-->
+        <!--display: table !Important;-->
+        <!--width: 100% !important;-->
+        <!--margin-bottom: 0px;-->
+        <!--}-->
+
+        <!--div.mg_addad335849 {-->
+        <!--text-align: right;-->
+        <!--opacity: 0.5;-->
+        <!--margin-right: 10px;-->
+        <!--display: inline-block;-->
+        <!--float: right;-->
+        <!--}-->
+
+        <!--div.mg_addad335849:hover {-->
+        <!--opacity: 1-->
+        <!--}-->
+
+        <!--div.mg_addad335849 a {-->
+        <!--color: #000000;-->
+        <!--font: normal 10px Myriad Pro;-->
+        <!--text-decoration: none;-->
+        <!--}-->
+
+        <!--div.mg_addad335849 img {-->
+        <!--margin: 0px -5px 0px 0px;-->
+        <!--border: 0px;-->
+        <!--float: none;-->
+        <!--padding: 0px;-->
+        <!--}</style>-->
+        <!--<div class="mgline teaser-3154301 type-w" style="position: relative;">-->
+        <!--<div class="image-with-text">-->
+        <!--<div class="mcimg"><a target="_blank"-->
+        <!--href="https://Nguy%C3%AAn_nh%C3%A2n_c%E1%BB%A7a_m%C3%B9i_h%C3%B4i_t%E1%BB%AB_mi%E1%BB%87ng_%C4%91%C6%B0%E1%BB%A3c_t%C3%ACm_th%E1%BA%A5y_%C4%90%E1%BB%8Dc_n%C3%B3/"-->
+        <!--data-hash="Oht4TqVN5Xc8VCxel6YshPon6MRgCFiMkDFTl4I60jUnFt6DlwsgQY1lTI-q6cOX"-->
+        <!--rel="nofollow">-->
+        <!--<div class="image-container"><img class="mcimg" width="492" height="328"-->
+        <!--data-i="3154301"-->
+        <!--src="../static/comic_files/aHR0cDovL2ltZy11cy5tZ2lkLmNvbS90ZW1wLzIwMTgtMTItMTMvMzIwODc3L2IxYTZmZDM3YTVlODJhYTJiMjUyZDgzMDA0NDQ3NDE5LmpwZz90PTE1NDQ3MDQwODQxNzE_.webp">-->
+        <!--&lt;!&ndash;intExchangeWagesImagePlace&ndash;&gt; </div>-->
+        <!--</a></div>-->
+        <!--<div class="text-elements">-->
+        <!--<div class="text_on_hover">-->
+        <!--<div class="mctitle"><a target="_blank"-->
+        <!--href="https://Nguy%C3%AAn_nh%C3%A2n_c%E1%BB%A7a_m%C3%B9i_h%C3%B4i_t%E1%BB%AB_mi%E1%BB%87ng_%C4%91%C6%B0%E1%BB%A3c_t%C3%ACm_th%E1%BA%A5y_%C4%90%E1%BB%8Dc_n%C3%B3/"-->
+        <!--data-hash="Oht4TqVN5Xc8VCxel6YshPon6MRgCFiMkDFTl4I60jUnFt6DlwsgQY1lTI-q6cOX"-->
+        <!--rel="nofollow">Nguyên nhân của mùi hôi từ miệng được-->
+        <!--tìm thấy! Đọc nó!</a></div>-->
+        <!--<div class="fake">-->
+        <!--<div class="mcdomain"><a target="_blank"-->
+        <!--href="https://Nguy%C3%AAn_nh%C3%A2n_c%E1%BB%A7a_m%C3%B9i_h%C3%B4i_t%E1%BB%AB_mi%E1%BB%87ng_%C4%91%C6%B0%E1%BB%A3c_t%C3%ACm_th%E1%BA%A5y_%C4%90%E1%BB%8Dc_n%C3%B3/"-->
+        <!--data-hash="Oht4TqVN5Xc8VCxel6YshPon6MRgCFiMkDFTl4I60jUnFt6DlwsgQY1lTI-q6cOX"-->
+        <!--rel="nofollow"></a></div>-->
+        <!--</div>-->
+        <!--<div class="mgtobottom">-->
+        <!--<div class="mcdomain"><a target="_blank"-->
+        <!--href="https://Nguy%C3%AAn_nh%C3%A2n_c%E1%BB%A7a_m%C3%B9i_h%C3%B4i_t%E1%BB%AB_mi%E1%BB%87ng_%C4%91%C6%B0%E1%BB%A3c_t%C3%ACm_th%E1%BA%A5y_%C4%90%E1%BB%8Dc_n%C3%B3/"-->
+        <!--data-hash="Oht4TqVN5Xc8VCxel6YshPon6MRgCFiMkDFTl4I60jUnFt6DlwsgQY1lTI-q6cOX"-->
+        <!--rel="nofollow">-->
+        <!--&lt;!&ndash;intExhangeWagesSourcePlace&ndash;&gt;</a></div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="resize-sensor"-->
+        <!--style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: scroll; z-index: -1; visibility: hidden;">-->
+        <!--<div class="resize-sensor-expand"-->
+        <!--style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: scroll; z-index: -1; visibility: hidden;">-->
+        <!--<div style="position: absolute; left: 0px; top: 0px; width: 290px; height: 246px;"></div>-->
+        <!--</div>-->
+        <!--<div class="resize-sensor-shrink"-->
+        <!--style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: scroll; z-index: -1; visibility: hidden;">-->
+        <!--<div style="position: absolute; left: 0; top: 0; width: 200%; height: 200%"></div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<style class="MarketGidC335849" type="text/css">-->
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 400;-->
+        <!--src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/opensans/v10/K88pR3goAWT7BTt32Z01m1tXRa8TVwTICgirnJhmVJw.woff2) format('woff2');-->
+        <!--unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 400;-->
+        <!--src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/opensans/v10/RjgO7rYTmqiVp7vzi-Q5UVtXRa8TVwTICgirnJhmVJw.woff2) format('woff2');-->
+        <!--unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 400;-->
+        <!--src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/opensans/v10/u-WUoqrET9fUeobQW7jkRVtXRa8TVwTICgirnJhmVJw.woff2) format('woff2');-->
+        <!--unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 400;-->
+        <!--src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/opensans/v10/cJZKeOuBrn4kERxqtaUH3VtXRa8TVwTICgirnJhmVJw.woff2) format('woff2');-->
+        <!--unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 700;-->
+        <!--src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzCUUniRZcd_wq8DYmIfsw2A.woff2) format('woff2');-->
+        <!--unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 700;-->
+        <!--src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzOXREeHhJi4GEUJI9ob_ak4.woff2) format('woff2');-->
+        <!--unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 700;-->
+        <!--src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzBUOjZSKWg4xBWp_C_qQx0o.woff2) format('woff2');-->
+        <!--unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 700;-->
+        <!--src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzOgdm0LZdjqr5-oayXSOefg.woff2) format('woff2');-->
+        <!--unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mgresponsive {-->
+        <!--display: inherit;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mgbox {-->
+        <!--padding: 0 !important;-->
+        <!--position: relative !important;-->
+        <!--text-align: center;-->
+        <!--vertical-align: top !important;-->
+        <!--margin: 0 auto;-->
+        <!--border-style: solid;-->
+        <!--border-width: 0px;-->
+        <!--border-color: ;-->
+        <!--background-color: ;-->
+        <!--display: -ms-flexbox;-->
+        <!--display: -webkit-flex;-->
+        <!--display: flex;-->
+        <!-- -webkit-flex-direction: row;-->
+        <!-- -ms-flex-direction: row;-->
+        <!--flex-direction: row;-->
+        <!-- -webkit-flex-wrap: wrap;-->
+        <!-- -ms-flex-wrap: wrap;-->
+        <!--flex-wrap: wrap;-->
+        <!--line-height: 100% !important;-->
+        <!--transition: none !important;-->
+        <!--box-sizing: border-box;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mgbox {-->
+        <!--width: 100%;-->
+        <!--max-width: 100%;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 div.mcimg {-->
+        <!--padding: 0px;-->
+        <!--text-align: center;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 img.mcimg {-->
+        <!--border-style: solid;-->
+        <!--border-color: #ffffff;-->
+        <!--border-width: 0px;-->
+        <!--width: 100% !important;-->
+        <!--height: auto !important;-->
+        <!--max-width: 492px;-->
+        <!--max-height: 328px;-->
+        <!--box-sizing: border-box;-->
+        <!--display: block;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mctitle {-->
+        <!--margin-top: 10px;-->
+        <!--text-align: left;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mctitle a {-->
+        <!--font-weight: bold;-->
+        <!--font-size: 15px;-->
+        <!--line-height: 15px;-->
+        <!--font-style: normal;-->
+        <!--text-decoration: none;-->
+        <!--color: #333333;-->
+        <!--font-family: 'Open Sans', sans-serif;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mcdesc {-->
+        <!--display: none;-->
+        <!--text-align: center;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mcdesc a {-->
+        <!--font-weight: normal;-->
+        <!--font-size: 12px;-->
+        <!--line-height: 12px;-->
+        <!--font-style: normal;-->
+        <!--text-decoration: none;-->
+        <!--color: #666666;-->
+        <!--font-family: 'Open Sans', sans-serif;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mcdomain {-->
+        <!--display: block;-->
+        <!--text-align: center;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mcdomain a {-->
+        <!--font-weight: normal;-->
+        <!--font-size: 10px;-->
+        <!--line-height: 10px;-->
+        <!--font-style: normal;-->
+        <!--text-decoration: none;-->
+        <!--color: #bbbbbb;-->
+        <!--font-family: 'Open Sans', sans-serif;-->
+        <!--padding: 4px;-->
+        <!--display: block;-->
+        <!--overflow: hidden;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mcdomain a img.mcimgsrc {-->
+        <!--vertical-align: bottom;-->
+        <!--margin-bottom: -3px;-->
+        <!--height: 20px;-->
+        <!--width: 20px;-->
+        <!--display: inline-block;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mgline {-->
+        <!--background: none repeat scroll 0 0;-->
+        <!--background-color: ;-->
+        <!--cursor: pointer;-->
+        <!--display: inline-block;-->
+        <!--overflow: hidden;-->
+        <!--zoom: 1;-->
+        <!--display: inline;-->
+        <!--padding: 0 !important;-->
+        <!--border-style: solid;-->
+        <!--border-color: #ffffff;-->
+        <!--border-width: 0px;-->
+        <!--width: 99%;-->
+        <!--max-width: 99%;-->
+        <!--box-sizing: border-box;-->
+        <!--margin: 10px 0.5%;-->
+        <!--display: -ms-flexbox;-->
+        <!--display: -webkit-flex;-->
+        <!--display: flex;-->
+        <!-- -webkit-flex-direction: column;-->
+        <!-- -ms-flex-direction: column;-->
+        <!--flex-direction: column;-->
+        <!--word-wrap: break-word;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mgline .image-container {-->
+        <!--position: relative;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mgline .image-container .mcimgad {-->
+        <!--position: absolute;-->
+        <!--right: 0;-->
+        <!--bottom: 0;-->
+        <!--width: 20px;-->
+        <!--height: 20px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mgline {-->
+        <!--vertical-align: top;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mgline, #MarketGidComposite335849 .mgbox {-->
+        <!--min-width: 90px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mgline[max-width~="120px"] .mcdesc {-->
+        <!--display: none !important;-->
+        <!--}-->
+
+        <!--@supports not (flex-wrap: wrap) {-->
+        <!--.mgbox {-->
+        <!--display: block !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mgline {-->
+        <!--display: inline-block !important;-->
+        <!--}-->
+        <!--}-->
+
+        <!--.text-elements a {-->
+        <!--text-decoration: none;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 div.mcprice {-->
+        <!--text-align: center;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 div.mcprice span {-->
+        <!--font-weight: bold;-->
+        <!--font-size: 12px;-->
+        <!--line-height: 12px;-->
+        <!--font-style: normal;-->
+        <!--text-decoration: none;-->
+        <!--color: #ffffff;-->
+        <!--font-family: 'Open Sans', sans-serif;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 div.mgbuybox, #MarketGidComposite335849 div.mgarrowbox {-->
+        <!--display: false;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 div.mgbuybox, #MarketGidComposite335849 div.mgarrowbox, #MarketGidComposite335849 div.mcprice {-->
+        <!--display: none;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 span.mcpriceold {-->
+        <!--text-decoration: line-through !important;-->
+        <!--}-->
+
+        <!--@media (max-width: 480px) {-->
+        <!--#MarketGidComposite335849 .mgline {-->
+        <!--width: 48% !important;-->
+        <!--margin: 1% !important;-->
+        <!--max-width: 48% !important;-->
+        <!--}-->
+        <!--}-->
+
+        <!--@media (max-width: 480px) {-->
+        <!--#MarketGidComposite335849 .mgline {-->
+        <!--width: 98% !important;-->
+        <!--margin: 1% !important;-->
+        <!--max-width: 98% !important;-->
+        <!--}-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mgpopular {-->
+        <!--background-color: rgba(255, 0, 0, 0.2) !important;-->
+        <!--border-color: rgba(255, 90, 0, 0.3) !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 img.mcimg {-->
+        <!--margin: 0;-->
+        <!--opacity: 1 !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mgline {-->
+        <!--position: relative;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mgline .fake {-->
+        <!--visibility: hidden;-->
+        <!--position: relative;-->
+        <!--padding-top: 4px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mgline:hover .mctitle a {-->
+        <!--color: #2b2b2b;-->
+        <!--text-decoration: underline !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mgline:hover .mcpriceold + .mcprice, #MarketGidComposite335849 .mgline:hover .mcpriceold {-->
+        <!--visibility: hidden;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mgline:hover .mcdiscount {-->
+        <!--display: block;-->
+        <!--position: absolute;-->
+        <!--left: 0px;-->
+        <!--right: 0px;-->
+        <!--top: 5px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mgarrowbox {-->
+        <!--position: relative;-->
+        <!--background: #2b2b2b;-->
+        <!--width: 55%;-->
+        <!--height: 22px;-->
+        <!--margin: 0px;-->
+        <!--border-color: transparent;-->
+        <!--border-left-color: #2b2b2b;-->
+        <!--display: inline-block;-->
+        <!--font-family: 'Open Sans', sans-serif;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mgarrowbox:after {-->
+        <!--left: 100%;-->
+        <!--top: 50%;-->
+        <!--content: " ";-->
+        <!--height: 0px;-->
+        <!--width: 0px;-->
+        <!--position: absolute;-->
+        <!--pointer-events: none;-->
+        <!--margin-top: -11px;-->
+        <!--border: solid 11px;-->
+        <!--border-color: inherit;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mgbuybox {-->
+        <!--width: 40%;-->
+        <!--display: inline-block;-->
+        <!--text-align: right;-->
+        <!--font-weight: bold;-->
+        <!--font-family: 'Open Sans', sans-serif;-->
+        <!--font-size: 12px;-->
+        <!--color: #666666;-->
+        <!--text-decoration: underline;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mctitle {-->
+        <!--margin-top: 2px;-->
+        <!--line-height: 1 !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mctitle a {-->
+        <!--line-height: 110% !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mcdesc {-->
+        <!--margin-top: 0;-->
+        <!--margin-bottom: 2px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mcdesc a {-->
+        <!--line-height: 1.5 !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 div.mcprice {-->
+        <!--margin-top: 5px;-->
+        <!--line-height: 12px !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 div.mgbuybox, #MarketGidComposite335849 div.mgarrowbox {-->
+        <!--display: none;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mgtobottom {-->
+        <!--position: absolute;-->
+        <!--bottom: 0;-->
+        <!--width: 100%;-->
+        <!--text-align: left;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mgline .image-with-text, #MarketGidComposite335849 .mgline .mgtobottom {-->
+        <!--width: 100% !important;-->
+        <!--margin: 0 auto;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mgline .image-with-text, #MarketGidComposite335849 .mgline .mgtobottom {-->
+        <!--max-width: 492px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mghead {-->
+        <!--font-family: 'Open Sans', sans-serif !important;-->
+        <!--color: #2b397b;-->
+        <!--font-size: 14px !important;-->
+        <!--text-transform: uppercase !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mcpriceold {-->
+        <!--float: left;-->
+        <!--padding-left: 5px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mcdiscount {-->
+        <!--display: none;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mcdomain {-->
+        <!--display: block;-->
+        <!--overflow: hidden;-->
+        <!--padding: 4px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mcdomain a {-->
+        <!--padding: 0px;-->
+        <!--display: block;-->
+        <!--padding-top: 5px;-->
+        <!--padding-bottom: 2px;-->
+        <!--overflow: hidden;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 div.mcprice, #MarketGidComposite335849 div.mcriceold {-->
+        <!--font-weight: bold;-->
+        <!--font-size: 12px;-->
+        <!--line-height: 12px;-->
+        <!--font-style: normal;-->
+        <!--text-decoration: none;-->
+        <!--color: #ffffff;-->
+        <!--font-family: 'Open Sans', sans-serif;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 div.mcpriceold {-->
+        <!--text-decoration: line-through !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mgline[max-width~="120px"] .mgarrowbox, #MarketGidComposite335849 .mgline[max-width~="120px"] .mgbuybox {-->
+        <!--display: none !important;-->
+        <!--}-->
+
+        <!--.image-with-text {-->
+        <!--min-height: 1px;-->
+        <!--}-->
+
+        <!--@media (max-width: 480px) {-->
+        <!--#MarketGidComposite335849 .mgline {-->
+        <!--width: 98% !important;-->
+        <!--margin: 1% !important;-->
+        <!--max-width: 98% !important;-->
+        <!--}-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mg-slider-overlay {-->
+        <!--overflow: hidden;-->
+        <!--position: relative;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mg-slider-overlay .mg-slider-wrap {-->
+        <!--min-height: 200px;-->
+        <!--position: relative;-->
+        <!--width: 100%;-->
+        <!-- -webkit-transform: translate3D(0, 0, 0);-->
+        <!-- -moz-transform: translate3D(0, 0, 0);-->
+        <!-- -ms-transform: translate3D(0, 0, 0);-->
+        <!-- -o-transform: translate3D(0, 0, 0);-->
+        <!--transform: translate3D(0, 0, 0);-->
+        <!-- -webkit-transition-duration: 200ms;-->
+        <!-- -moz-transition-duration: 200ms;-->
+        <!-- -ms-transition-duration: 200ms;-->
+        <!-- -o-transition-duration: 200ms;-->
+        <!--transition-duration: 200ms;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mg-slider-overlay .mg-slider-wrap .mg-slider-box {-->
+        <!--left: 0;-->
+        <!--top: 0;-->
+        <!--position: absolute;-->
+        <!--width: 100%;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mg-pagination {-->
+        <!--text-align: center;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mg-pagination .mg-pagination-list {-->
+        <!--display: inline-block;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mg-pagination .mg-pagination-item {-->
+        <!--cursor: pointer;-->
+        <!--display: inline-block;-->
+        <!--*display: inline;-->
+        <!--*zoom: 1;-->
+        <!--width: 8px;-->
+        <!--height: 8px;-->
+        <!--margin: 0 2px;-->
+        <!--background: #ddd;-->
+        <!--border-radius: 50%;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mg-pagination .mg-pagination-item-prev, #MarketGidComposite335849 .mg-pagination .mg-pagination-item-next {-->
+        <!--background: #f7f7f7;-->
+        <!--border: 1px solid #cecece;-->
+        <!--border-radius: 2px;-->
+        <!--cursor: pointer;-->
+        <!--display: inline-block;-->
+        <!--height: 11px;-->
+        <!--margin: 0 10px;-->
+        <!--padding: 5px 0;-->
+        <!--text-align: center;-->
+        <!--vertical-align: middle;-->
+        <!--width: 29px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mg-pagination .mg-pagination-item-prev:after, #MarketGidComposite335849 .mg-pagination .mg-pagination-item-next:after {-->
+        <!--background: url(https://images.dable.io/static/i/prevnext2.png?3) no-repeat 0 0;-->
+        <!--background-size: 17px 11px;-->
+        <!--content: "";-->
+        <!--display: inline-block;-->
+        <!--height: 13px;-->
+        <!--width: 9px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mg-pagination .mg-pagination-item-next:after {-->
+        <!--background-position: -10px 0;-->
+        <!--width: 8px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mg-pagination .mg-pagination-item-current {-->
+        <!--background: #508eef;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 div.mcimg a.close-informer {-->
+        <!--width: 14px;-->
+        <!--height: 14px;-->
+        <!--background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyFpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDIxIDc5LjE1NDkxMSwgMjAxMy8xMC8yOS0xMTo0NzoxNiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo5NzI0ODBDMzY3ODcxMUU1OEM4RUU2RUJCOUREODIyQiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo5NzI0ODBDNDY3ODcxMUU1OEM4RUU2RUJCOUREODIyQiI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjk3MjQ4MEMxNjc4NzExRTU4QzhFRTZFQkI5REQ4MjJCIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjk3MjQ4MEMyNjc4NzExRTU4QzhFRTZFQkI5REQ4MjJCIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+uNcpEQAAAHxJREFUeNqckgEKwCAIRe3fYjfKc2zX6hydaLRbbDnGkLDIPggl/5lKIcbIRJRqbDSnUmOHE6LPm+CEfhj6lnN+o5WVh1VOm6xColCXc/cgLWYev9gaejnQojCab5RDzyDt6RantqoBaz5zq54ZywJ3CXjIwQGd8skfAQYALdQqftYulocAAAAASUVORK5CYIJ0ZW50Ij4NCiA8ZGl2IGNsYXNzPSJjb250ZW50LWNvbnRhaW5lciI+PGZpZWxkc2V0Pg0KICA8aDI+NTAyIC0gV2ViIHNlcnZlciByZWNlaXZlZCBhbiBpbnZhbGlkIHJlc3BvbnNlIHdoaWxlIGFjdGluZyBhcyBhIGdhdGV3YXkgb3IgcHJveHkgc2VydmVyLjwvaDI+DQogIDxoMz5UaGVyZSBpcyBhIHByb2JsZW0gd2l0aCB0aGUgcGFnZSB5b3UgYXJlIGxvb2tpbmcgZm9yLCBhbmQgaXQgY2Fubm90IGJlIGRpc3BsYXllZC4gV2hlbiB0aGUgV2ViIHNlcnZlciAod2hpbGUgYWN0aW5nIGFzIGEgZ2F0ZXdheSBvciBwcm94eSkgY29udGFjdGVkIHRoZSB1cHN0cmVhbSBjb250ZW50IHNlcnZlciwgaXQgcmVjZWl2ZWQgYW4gaW52YWxpZCByZXNwb25zZSBmcm9tIHRoZSBjb250ZW50IHNlcnZlci48L2gzPg0KIDwvZmllbGRzZXQ+PC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==");-->
+        <!--display: block;-->
+        <!--opacity: 0;-->
+        <!--position: absolute;-->
+        <!--right: 3px;-->
+        <!--top: 3px;-->
+        <!--z-index: 1;-->
+        <!--cursor: pointer;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 div.mgline:hover a.close-informer {-->
+        <!--opacity: 0.7;-->
+        <!-- -moz-transition: all 0.3s ease-out;-->
+        <!-- -o-transition: all 0.3s ease-out;-->
+        <!-- -webkit-transition: all 0.3s ease-out;-->
+        <!-- -ms-transition: all 0.3s ease-out;-->
+        <!--transition: all 0.3s ease-out;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 div.mgline a.close-informer:hover {-->
+        <!--opacity: 1;-->
+        <!-- -moz-transition: all 0.3s ease-out;-->
+        <!-- -o-transition: all 0.3s ease-out;-->
+        <!-- -webkit-transition: all 0.3s ease-out;-->
+        <!-- -ms-transition: all 0.3s ease-out;-->
+        <!--transition: all 0.3s ease-out;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 div.mcimg {-->
+        <!--position: relative;-->
+        <!--display: inline-block-->
+        <!--}-->
+
+        <!--div.image-with-price {-->
+        <!--position: relative;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335849 .mgline .image-container {-->
+        <!--width: auto;-->
+        <!--margin: 0 auto;-->
+        <!--position: relative;-->
+        <!--}</style>-->
+        <!--</div>-->
+        <!--<script type="text/javascript" charset="utf-8" src="../static/comic_files/1(1)"></script>-->
+        <!--</div>&lt;!&ndash; Composite End &ndash;&gt;</div>-->
+        <div class="list list-truyen list-side col-xs-12">
+            <div class="title-list"><h4>Truyện đang hot</h4></div>
+            <div class="row top-nav" data-limit="10">
+                <div class="col-xs-4 active" data-type="day">Ngày</div>
+                <div class="col-xs-4" data-type="month">Tháng</div>
+                <div class="col-xs-4" data-type="all">All time</div>
+            </div>
+            <div class="row top-item" itemscope="" itemtype="https://schema.org/Book">
+                <div class="col-xs-12">
+                    <div class="top-num top-1">1</div>
+                    <div class="s-title"><h3 itemprop="name"><a href="https://truyenfull.vn/vo-tan-dan-dien/"
+                                                                title="Vô Tận Đan Điền" itemprop="url">Vô Tận Đan
+                        Điền</a></h3></div>
+                    <div><a itemprop="genre" href="https://truyenfull.vn/the-loai/tien-hiep/" title="Tiên Hiệp">Tiên
+                        Hiệp</a>, <a itemprop="genre" href="https://truyenfull.vn/the-loai/di-gioi/"
+                                     title="Dị Giới">Dị Giới</a>, <a itemprop="genre"
+                                                                     href="https://truyenfull.vn/the-loai/huyen-huyen/"
+                                                                     title="Huyền Huyễn">Huyền Huyễn</a></div>
+                </div>
+            </div>
+            <div class="row top-item" itemscope="" itemtype="https://schema.org/Book">
+                <div class="col-xs-12">
+                    <div class="top-num top-2">2</div>
+                    <div class="s-title"><h3 itemprop="name"><a
+                            href="https://truyenfull.vn/truyen-choc-tuc-vo-yeu-mua-mot-tang-mot-full/"
+                            title="Chọc Tức Vợ Yêu - Mua Một Tặng Một" itemprop="url">Chọc Tức Vợ Yêu - Mua Một Tặng
+                        Một</a></h3></div>
+                    <div><a itemprop="genre" href="https://truyenfull.vn/the-loai/ngon-tinh/" title="Ngôn Tình">Ngôn
+                        Tình</a>, <a itemprop="genre" href="https://truyenfull.vn/the-loai/hai-huoc/"
+                                     title="Hài Hước">Hài Hước</a>, <a itemprop="genre"
+                                                                       href="https://truyenfull.vn/the-loai/sung/"
+                                                                       title="Sủng">Sủng</a></div>
+                </div>
+            </div>
+            <div class="row top-item" itemscope="" itemtype="https://schema.org/Book">
+                <div class="col-xs-12">
+                    <div class="top-num top-3">3</div>
+                    <div class="s-title"><h3 itemprop="name"><a href="https://truyenfull.vn/linh-vu-thien-ha/"
+                                                                title="Linh Vũ Thiên Hạ" itemprop="url">Linh Vũ
+                        Thiên Hạ</a></h3></div>
+                    <div><a itemprop="genre" href="https://truyenfull.vn/the-loai/tien-hiep/" title="Tiên Hiệp">Tiên
+                        Hiệp</a>, <a itemprop="genre" href="https://truyenfull.vn/the-loai/di-gioi/"
+                                     title="Dị Giới">Dị Giới</a>, <a itemprop="genre"
+                                                                     href="https://truyenfull.vn/the-loai/huyen-huyen/"
+                                                                     title="Huyền Huyễn">Huyền Huyễn</a></div>
+                </div>
+            </div>
+            <div class="row top-item" itemscope="" itemtype="https://schema.org/Book">
+                <div class="col-xs-12">
+                    <div class="top-num top-4">4</div>
+                    <div class="s-title"><h3 itemprop="name"><a
+                            href="https://truyenfull.vn/ngon-tinh-boss-hung-du-ong-xa-ket-hon-di-full/"
+                            title="Boss Hung Dữ - Ông Xã Kết Hôn Đi" itemprop="url">Boss Hung Dữ - Ông Xã Kết Hôn
+                        Đi</a></h3></div>
+                    <div><a itemprop="genre" href="https://truyenfull.vn/the-loai/ngon-tinh/" title="Ngôn Tình">Ngôn
+                        Tình</a></div>
+                </div>
+            </div>
+            <div class="row top-item" itemscope="" itemtype="https://schema.org/Book">
+                <div class="col-xs-12">
+                    <div class="top-num top-5">5</div>
+                    <div class="s-title"><h3 itemprop="name"><a href="https://truyenfull.vn/than-dao-dan-ton/"
+                                                                title="Thần Đạo Đan Tôn" itemprop="url">Thần Đạo Đan
+                        Tôn</a></h3></div>
+                    <div><a itemprop="genre" href="https://truyenfull.vn/the-loai/tien-hiep/" title="Tiên Hiệp">Tiên
+                        Hiệp</a>, <a itemprop="genre" href="https://truyenfull.vn/the-loai/huyen-huyen/"
+                                     title="Huyền Huyễn">Huyền Huyễn</a></div>
+                </div>
+            </div>
+            <div class="row top-item" itemscope="" itemtype="https://schema.org/Book">
+                <div class="col-xs-12">
+                    <div class="top-num top-6">6</div>
+                    <div class="s-title"><h3 itemprop="name"><a href="https://truyenfull.vn/vu-dong-can-khon/"
+                                                                title="Vũ Động Càn Khôn" itemprop="url">Vũ Động Càn
+                        Khôn</a></h3></div>
+                    <div><a itemprop="genre" href="https://truyenfull.vn/the-loai/tien-hiep/" title="Tiên Hiệp">Tiên
+                        Hiệp</a>, <a itemprop="genre" href="https://truyenfull.vn/the-loai/huyen-huyen/"
+                                     title="Huyền Huyễn">Huyền Huyễn</a></div>
+                </div>
+            </div>
+            <div class="row top-item" itemscope="" itemtype="https://schema.org/Book">
+                <div class="col-xs-12">
+                    <div class="top-num top-7">7</div>
+                    <div class="s-title"><h3 itemprop="name"><a href="https://truyenfull.vn/ta-y/" title="Tà Y"
+                                                                itemprop="url">Tà Y</a></h3></div>
+                    <div><a itemprop="genre" href="https://truyenfull.vn/the-loai/ngon-tinh/" title="Ngôn Tình">Ngôn
+                        Tình</a>, <a itemprop="genre" href="https://truyenfull.vn/the-loai/sac/" title="Sắc">Sắc</a>,
+                        <a itemprop="genre" href="https://truyenfull.vn/the-loai/xuyen-khong/" title="Xuyên Không">Xuyên
+                            Không</a></div>
+                </div>
+            </div>
+            <div class="row top-item" itemscope="" itemtype="https://schema.org/Book">
+                <div class="col-xs-12">
+                    <div class="top-num top-8">8</div>
+                    <div class="s-title"><h3 itemprop="name"><a
+                            href="https://truyenfull.vn/truyen-ngon-tinh-boss-la-nu-phu/" title="Boss Là Nữ Phụ"
+                            itemprop="url">Boss Là Nữ Phụ</a></h3></div>
+                    <div><a itemprop="genre" href="https://truyenfull.vn/the-loai/ngon-tinh/" title="Ngôn Tình">Ngôn
+                        Tình</a>, <a itemprop="genre" href="https://truyenfull.vn/the-loai/di-gioi/"
+                                     title="Dị Giới">Dị Giới</a>, <a itemprop="genre"
+                                                                     href="https://truyenfull.vn/the-loai/huyen-huyen/"
+                                                                     title="Huyền Huyễn">Huyền Huyễn</a></div>
+                </div>
+            </div>
+            <div class="row top-item" itemscope="" itemtype="https://schema.org/Book">
+                <div class="col-xs-12">
+                    <div class="top-num top-9">9</div>
+                    <div class="s-title"><h3 itemprop="name"><a
+                            href="https://truyenfull.vn/truyen-nang-dau-cuc-pham/" title="Nàng Dâu Cực Phẩm"
+                            itemprop="url">Nàng Dâu Cực Phẩm</a></h3></div>
+                    <div><a itemprop="genre" href="https://truyenfull.vn/the-loai/ngon-tinh/" title="Ngôn Tình">Ngôn
+                        Tình</a></div>
+                </div>
+            </div>
+            <div class="row top-item" itemscope="" itemtype="https://schema.org/Book">
+                <div class="col-xs-12">
+                    <div class="top-num top-10">10</div>
+                    <div class="s-title"><h3 itemprop="name"><a
+                            href="https://truyenfull.vn/truyen-than-khong-thien-ha/" title="Thần Khống Thiên Hạ"
+                            itemprop="url">Thần Khống Thiên Hạ</a></h3></div>
+                    <div><a itemprop="genre" href="https://truyenfull.vn/the-loai/tien-hiep/" title="Tiên Hiệp">Tiên
+                        Hiệp</a>, <a itemprop="genre" href="https://truyenfull.vn/the-loai/di-gioi/"
+                                     title="Dị Giới">Dị Giới</a>, <a itemprop="genre"
+                                                                     href="https://truyenfull.vn/the-loai/huyen-huyen/"
+                                                                     title="Huyền Huyễn">Huyền Huyễn</a></div>
+                </div>
+            </div>
+        </div>
+        <!--<div class="ads-300-250">&lt;!&ndash; Composite Start &ndash;&gt;-->
+        <!--<div id="M182108ScriptRootC335851" style="">-->
+        <!--<div id="M182108PreloadC335851" style="display: none;"></div>-->
+        <!--<iframe style="display: none;" src="../static/comic_files/saved_resource(2).html"></iframe>-->
+        <!--<div id="MarketGidComposite335851" style="height: auto; overflow: visible;">-->
+        <!--<style class="MarketGidC335851" type="text/css">-->
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 400;-->
+        <!--src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/opensans/v10/K88pR3goAWT7BTt32Z01m1tXRa8TVwTICgirnJhmVJw.woff2) format('woff2');-->
+        <!--unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 400;-->
+        <!--src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/opensans/v10/RjgO7rYTmqiVp7vzi-Q5UVtXRa8TVwTICgirnJhmVJw.woff2) format('woff2');-->
+        <!--unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 400;-->
+        <!--src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/opensans/v10/u-WUoqrET9fUeobQW7jkRVtXRa8TVwTICgirnJhmVJw.woff2) format('woff2');-->
+        <!--unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 400;-->
+        <!--src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/opensans/v10/cJZKeOuBrn4kERxqtaUH3VtXRa8TVwTICgirnJhmVJw.woff2) format('woff2');-->
+        <!--unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 700;-->
+        <!--src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzCUUniRZcd_wq8DYmIfsw2A.woff2) format('woff2');-->
+        <!--unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 700;-->
+        <!--src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzOXREeHhJi4GEUJI9ob_ak4.woff2) format('woff2');-->
+        <!--unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 700;-->
+        <!--src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzBUOjZSKWg4xBWp_C_qQx0o.woff2) format('woff2');-->
+        <!--unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 700;-->
+        <!--src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzOgdm0LZdjqr5-oayXSOefg.woff2) format('woff2');-->
+        <!--unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mgresponsive {-->
+        <!--display: inherit;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mgbox {-->
+        <!--padding: 0 !important;-->
+        <!--position: relative !important;-->
+        <!--text-align: center;-->
+        <!--vertical-align: top !important;-->
+        <!--margin: 0 auto;-->
+        <!--border-style: solid;-->
+        <!--border-width: 0px;-->
+        <!--border-color: ;-->
+        <!--background-color: ;-->
+        <!--display: -ms-flexbox;-->
+        <!--display: -webkit-flex;-->
+        <!--display: flex;-->
+        <!-- -webkit-flex-direction: row;-->
+        <!-- -ms-flex-direction: row;-->
+        <!--flex-direction: row;-->
+        <!-- -webkit-flex-wrap: wrap;-->
+        <!-- -ms-flex-wrap: wrap;-->
+        <!--flex-wrap: wrap;-->
+        <!--line-height: 100% !important;-->
+        <!--transition: none !important;-->
+        <!--box-sizing: border-box;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mgbox {-->
+        <!--width: 100%;-->
+        <!--max-width: 100%;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ div.mcimg {-->
+        <!--padding: 0px;-->
+        <!--text-align: center;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ img.mcimg {-->
+        <!--border-style: solid;-->
+        <!--border-color: #ffffff;-->
+        <!--border-width: 0px;-->
+        <!--width: 100% !important;-->
+        <!--height: auto !important;-->
+        <!--max-width: 492px;-->
+        <!--max-height: 328px;-->
+        <!--box-sizing: border-box;-->
+        <!--display: block;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mctitle {-->
+        <!--margin-top: 10px;-->
+        <!--text-align: left;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mctitle a {-->
+        <!--font-weight: bold;-->
+        <!--font-size: 15px;-->
+        <!--line-height: 15px;-->
+        <!--font-style: normal;-->
+        <!--text-decoration: none;-->
+        <!--color: #333333;-->
+        <!--font-family: 'Open Sans', sans-serif;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mcdesc {-->
+        <!--display: none;-->
+        <!--text-align: center;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mcdesc a {-->
+        <!--font-weight: normal;-->
+        <!--font-size: 12px;-->
+        <!--line-height: 12px;-->
+        <!--font-style: normal;-->
+        <!--text-decoration: none;-->
+        <!--color: #666666;-->
+        <!--font-family: 'Open Sans', sans-serif;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mcdomain {-->
+        <!--display: block;-->
+        <!--text-align: center;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mcdomain a {-->
+        <!--font-weight: normal;-->
+        <!--font-size: 10px;-->
+        <!--line-height: 10px;-->
+        <!--font-style: normal;-->
+        <!--text-decoration: none;-->
+        <!--color: #bbbbbb;-->
+        <!--font-family: 'Open Sans', sans-serif;-->
+        <!--padding: 4px;-->
+        <!--display: block;-->
+        <!--overflow: hidden;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mcdomain a img.mcimgsrc {-->
+        <!--vertical-align: bottom;-->
+        <!--margin-bottom: -3px;-->
+        <!--height: 20px;-->
+        <!--width: 20px;-->
+        <!--display: inline-block;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mgline {-->
+        <!--background: none repeat scroll 0 0;-->
+        <!--background-color: ;-->
+        <!--cursor: pointer;-->
+        <!--display: inline-block;-->
+        <!--overflow: hidden;-->
+        <!--zoom: 1;-->
+        <!--display: inline;-->
+        <!--padding: 0 !important;-->
+        <!--border-style: solid;-->
+        <!--border-color: #ffffff;-->
+        <!--border-width: 0px;-->
+        <!--width: 99%;-->
+        <!--max-width: 99%;-->
+        <!--box-sizing: border-box;-->
+        <!--margin: 10px 0.5%;-->
+        <!--display: -ms-flexbox;-->
+        <!--display: -webkit-flex;-->
+        <!--display: flex;-->
+        <!-- -webkit-flex-direction: column;-->
+        <!-- -ms-flex-direction: column;-->
+        <!--flex-direction: column;-->
+        <!--word-wrap: break-word;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mgline .image-container {-->
+        <!--position: relative;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mgline .image-container .mcimgad {-->
+        <!--position: absolute;-->
+        <!--right: 0;-->
+        <!--bottom: 0;-->
+        <!--width: 20px;-->
+        <!--height: 20px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mgline {-->
+        <!--vertical-align: top;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mgline, #MarketGidComposite335851_ .mgbox {-->
+        <!--min-width: 90px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mgline[max-width~="120px"] .mcdesc {-->
+        <!--display: none !important;-->
+        <!--}-->
+
+        <!--@supports not (flex-wrap: wrap) {-->
+        <!--.mgbox {-->
+        <!--display: block !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mgline {-->
+        <!--display: inline-block !important;-->
+        <!--}-->
+        <!--}-->
+
+        <!--.text-elements a {-->
+        <!--text-decoration: none;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ div.mcprice {-->
+        <!--text-align: center;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ div.mcprice span {-->
+        <!--font-weight: bold;-->
+        <!--font-size: 12px;-->
+        <!--line-height: 12px;-->
+        <!--font-style: normal;-->
+        <!--text-decoration: none;-->
+        <!--color: #ffffff;-->
+        <!--font-family: 'Open Sans', sans-serif;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ div.mgbuybox, #MarketGidComposite335851_ div.mgarrowbox {-->
+        <!--display: false;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ div.mgbuybox, #MarketGidComposite335851_ div.mgarrowbox, #MarketGidComposite335851_ div.mcprice {-->
+        <!--display: none;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ span.mcpriceold {-->
+        <!--text-decoration: line-through !important;-->
+        <!--}-->
+
+        <!--@media (max-width: 480px) {-->
+        <!--#MarketGidComposite335851_ .mgline {-->
+        <!--width: 48% !important;-->
+        <!--margin: 1% !important;-->
+        <!--max-width: 48% !important;-->
+        <!--}-->
+        <!--}-->
+
+        <!--@media (max-width: 480px) {-->
+        <!--#MarketGidComposite335851_ .mgline {-->
+        <!--width: 98% !important;-->
+        <!--margin: 1% !important;-->
+        <!--max-width: 98% !important;-->
+        <!--}-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mgpopular {-->
+        <!--background-color: rgba(255, 0, 0, 0.2) !important;-->
+        <!--border-color: rgba(255, 90, 0, 0.3) !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ img.mcimg {-->
+        <!--margin: 0;-->
+        <!--opacity: 1 !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mgline {-->
+        <!--position: relative;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mgline .fake {-->
+        <!--visibility: hidden;-->
+        <!--position: relative;-->
+        <!--padding-top: 4px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mgline:hover .mctitle a {-->
+        <!--color: #2b2b2b;-->
+        <!--text-decoration: underline !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mgline:hover .mcpriceold + .mcprice, #MarketGidComposite335851_ .mgline:hover .mcpriceold {-->
+        <!--visibility: hidden;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mgline:hover .mcdiscount {-->
+        <!--display: block;-->
+        <!--position: absolute;-->
+        <!--left: 0px;-->
+        <!--right: 0px;-->
+        <!--top: 5px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mgarrowbox {-->
+        <!--position: relative;-->
+        <!--background: #2b2b2b;-->
+        <!--width: 55%;-->
+        <!--height: 22px;-->
+        <!--margin: 0px;-->
+        <!--border-color: transparent;-->
+        <!--border-left-color: #2b2b2b;-->
+        <!--display: inline-block;-->
+        <!--font-family: 'Open Sans', sans-serif;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mgarrowbox:after {-->
+        <!--left: 100%;-->
+        <!--top: 50%;-->
+        <!--content: " ";-->
+        <!--height: 0px;-->
+        <!--width: 0px;-->
+        <!--position: absolute;-->
+        <!--pointer-events: none;-->
+        <!--margin-top: -11px;-->
+        <!--border: solid 11px;-->
+        <!--border-color: inherit;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mgbuybox {-->
+        <!--width: 40%;-->
+        <!--display: inline-block;-->
+        <!--text-align: right;-->
+        <!--font-weight: bold;-->
+        <!--font-family: 'Open Sans', sans-serif;-->
+        <!--font-size: 12px;-->
+        <!--color: #666666;-->
+        <!--text-decoration: underline;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mctitle {-->
+        <!--margin-top: 2px;-->
+        <!--line-height: 1 !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mctitle a {-->
+        <!--line-height: 110% !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mcdesc {-->
+        <!--margin-top: 0;-->
+        <!--margin-bottom: 2px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mcdesc a {-->
+        <!--line-height: 1.5 !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ div.mcprice {-->
+        <!--margin-top: 5px;-->
+        <!--line-height: 12px !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ div.mgbuybox, #MarketGidComposite335851_ div.mgarrowbox {-->
+        <!--display: none;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mgtobottom {-->
+        <!--position: absolute;-->
+        <!--bottom: 0;-->
+        <!--width: 100%;-->
+        <!--text-align: left;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mgline .image-with-text, #MarketGidComposite335851_ .mgline .mgtobottom {-->
+        <!--width: 100% !important;-->
+        <!--margin: 0 auto;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mgline .image-with-text, #MarketGidComposite335851_ .mgline .mgtobottom {-->
+        <!--max-width: 492px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mghead {-->
+        <!--font-family: 'Open Sans', sans-serif !important;-->
+        <!--color: #2b397b;-->
+        <!--font-size: 14px !important;-->
+        <!--text-transform: uppercase !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mcpriceold {-->
+        <!--float: left;-->
+        <!--padding-left: 5px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mcdiscount {-->
+        <!--display: none;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mcdomain {-->
+        <!--display: block;-->
+        <!--overflow: hidden;-->
+        <!--padding: 4px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mcdomain a {-->
+        <!--padding: 0px;-->
+        <!--display: block;-->
+        <!--padding-top: 5px;-->
+        <!--padding-bottom: 2px;-->
+        <!--overflow: hidden;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ div.mcprice, #MarketGidComposite335851_ div.mcriceold {-->
+        <!--font-weight: bold;-->
+        <!--font-size: 12px;-->
+        <!--line-height: 12px;-->
+        <!--font-style: normal;-->
+        <!--text-decoration: none;-->
+        <!--color: #ffffff;-->
+        <!--font-family: 'Open Sans', sans-serif;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ div.mcpriceold {-->
+        <!--text-decoration: line-through !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mgline[max-width~="120px"] .mgarrowbox, #MarketGidComposite335851_ .mgline[max-width~="120px"] .mgbuybox {-->
+        <!--display: none !important;-->
+        <!--}-->
+
+        <!--.image-with-text {-->
+        <!--min-height: 1px;-->
+        <!--}-->
+
+        <!--@media (max-width: 480px) {-->
+        <!--#MarketGidComposite335851_ .mgline {-->
+        <!--width: 98% !important;-->
+        <!--margin: 1% !important;-->
+        <!--max-width: 98% !important;-->
+        <!--}-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mg-slider-overlay {-->
+        <!--overflow: hidden;-->
+        <!--position: relative;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mg-slider-overlay .mg-slider-wrap {-->
+        <!--min-height: 200px;-->
+        <!--position: relative;-->
+        <!--width: 100%;-->
+        <!-- -webkit-transform: translate3D(0, 0, 0);-->
+        <!-- -moz-transform: translate3D(0, 0, 0);-->
+        <!-- -ms-transform: translate3D(0, 0, 0);-->
+        <!-- -o-transform: translate3D(0, 0, 0);-->
+        <!--transform: translate3D(0, 0, 0);-->
+        <!-- -webkit-transition-duration: 200ms;-->
+        <!-- -moz-transition-duration: 200ms;-->
+        <!-- -ms-transition-duration: 200ms;-->
+        <!-- -o-transition-duration: 200ms;-->
+        <!--transition-duration: 200ms;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mg-slider-overlay .mg-slider-wrap .mg-slider-box {-->
+        <!--left: 0;-->
+        <!--top: 0;-->
+        <!--position: absolute;-->
+        <!--width: 100%;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mg-pagination {-->
+        <!--text-align: center;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mg-pagination .mg-pagination-list {-->
+        <!--display: inline-block;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mg-pagination .mg-pagination-item {-->
+        <!--cursor: pointer;-->
+        <!--display: inline-block;-->
+        <!--*display: inline;-->
+        <!--*zoom: 1;-->
+        <!--width: 8px;-->
+        <!--height: 8px;-->
+        <!--margin: 0 2px;-->
+        <!--background: #ddd;-->
+        <!--border-radius: 50%;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mg-pagination .mg-pagination-item-prev, #MarketGidComposite335851_ .mg-pagination .mg-pagination-item-next {-->
+        <!--background: #f7f7f7;-->
+        <!--border: 1px solid #cecece;-->
+        <!--border-radius: 2px;-->
+        <!--cursor: pointer;-->
+        <!--display: inline-block;-->
+        <!--height: 11px;-->
+        <!--margin: 0 10px;-->
+        <!--padding: 5px 0;-->
+        <!--text-align: center;-->
+        <!--vertical-align: middle;-->
+        <!--width: 29px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mg-pagination .mg-pagination-item-prev:after, #MarketGidComposite335851_ .mg-pagination .mg-pagination-item-next:after {-->
+        <!--background: url(https://images.dable.io/static/i/prevnext2.png?3) no-repeat 0 0;-->
+        <!--background-size: 17px 11px;-->
+        <!--content: "";-->
+        <!--display: inline-block;-->
+        <!--height: 13px;-->
+        <!--width: 9px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mg-pagination .mg-pagination-item-next:after {-->
+        <!--background-position: -10px 0;-->
+        <!--width: 8px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851_ .mg-pagination .mg-pagination-item-current {-->
+        <!--background: #508eef;-->
+        <!--} </style>-->
+        <!--<div class="mgbox">-->
+        <!--<div class="mgheader" data-advert-url="https://cdn.mgid.com/advert/mgid/main.html"><span-->
+        <!--class="mghead">TIN HOT</span>-->
+        <!--<div class="mg_addad335851"><a-->
+        <!--href="https://mgid.com/advertisers?utm_source=widget&amp;utm_medium=text&amp;utm_campaign=add&amp;utm_content=335851"-->
+        <!--target="_blank" rel="nofollow"><img-->
+        <!--style="display: inline-block;width: 65px!important;"-->
+        <!--src="../static/comic_files/by_mgid_adc_logo_mini.svg" alt="Mgid" title="Mgid"></a>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<style>-->
+        <!--.mghead {-->
+        <!--font-weight: 700;-->
+        <!--font-size: 14px;-->
+        <!--text-transform: uppercase;-->
+        <!--text-align: left;-->
+        <!--font-family: "Open Sans", sans-serif;-->
+        <!--color: #4555a7;-->
+        <!--display: block;-->
+        <!--margin: 5px 0 0px 5px;-->
+        <!--float: left;-->
+        <!--}-->
+
+        <!--.mgheader {-->
+        <!--display: table !Important;-->
+        <!--width: 100% !important;-->
+        <!--margin-bottom: 0px;-->
+        <!--}-->
+
+        <!--div.mg_addad335851 {-->
+        <!--text-align: right;-->
+        <!--opacity: 0.5;-->
+        <!--margin-right: 10px;-->
+        <!--display: inline-block;-->
+        <!--float: right;-->
+        <!--}-->
+
+        <!--div.mg_addad335851:hover {-->
+        <!--opacity: 1-->
+        <!--}-->
+
+        <!--div.mg_addad335851 a {-->
+        <!--color: #000000;-->
+        <!--font: normal 10px Myriad Pro;-->
+        <!--text-decoration: none;-->
+        <!--}-->
+
+        <!--div.mg_addad335851 img {-->
+        <!--margin: 0px -5px 0px 0px;-->
+        <!--border: 0px;-->
+        <!--float: none;-->
+        <!--padding: 0px;-->
+        <!--}</style>-->
+        <!--<div class="mgline teaser-3355708 type-w" style="position: relative;">-->
+        <!--<div class="image-with-text">-->
+        <!--<div class="mcimg"><a target="_blank"-->
+        <!--href="https://M%E1%BB%A1_%E1%BB%9F_b%E1%BB%A5ng_v%C3%A0_hai_b%C3%AAn_h%C3%B4ng_s%E1%BA%BD_bi%E1%BA%BFn_m%E1%BA%A5t_ch%E1%BB%89_trong_3_ng%C3%A0y/"-->
+        <!--data-hash="hy7gTO5KXv7vKlqVgOfI25aQLquqGI9S78pFQ_-8nFAlFWx6csREdMCTMiHNYIK-"-->
+        <!--rel="nofollow">-->
+        <!--<div class="image-container"><img class="mcimg" width="492" height="328"-->
+        <!--data-i="3355708"-->
+        <!--src="../static/comic_files/aHR0cDovL2ltZy11cy5tZ2lkLmNvbS90ZWFzZXIvMjAxOS0wMy0wNy8zNTcwNDYvMGFmZDcxNTkyZTllNjEyMWVmOTY4ZDA0ZDUwYzhjOGUuanBnP3Q9MTU1MTk5OTA0NzQwNw__.webp">-->
+        <!--&lt;!&ndash;intExchangeWagesImagePlace&ndash;&gt; </div>-->
+        <!--</a></div>-->
+        <!--<div class="text-elements">-->
+        <!--<div class="text_on_hover">-->
+        <!--<div class="mctitle"><a target="_blank"-->
+        <!--href="https://M%E1%BB%A1_%E1%BB%9F_b%E1%BB%A5ng_v%C3%A0_hai_b%C3%AAn_h%C3%B4ng_s%E1%BA%BD_bi%E1%BA%BFn_m%E1%BA%A5t_ch%E1%BB%89_trong_3_ng%C3%A0y/"-->
+        <!--data-hash="hy7gTO5KXv7vKlqVgOfI25aQLquqGI9S78pFQ_-8nFAlFWx6csREdMCTMiHNYIK-"-->
+        <!--rel="nofollow">Mỡ ở bụng và hai bên hông sẽ biến mất-->
+        <!--chỉ trong 3 ngày</a></div>-->
+        <!--<div class="fake">-->
+        <!--<div class="mcdomain"><a target="_blank"-->
+        <!--href="https://M%E1%BB%A1_%E1%BB%9F_b%E1%BB%A5ng_v%C3%A0_hai_b%C3%AAn_h%C3%B4ng_s%E1%BA%BD_bi%E1%BA%BFn_m%E1%BA%A5t_ch%E1%BB%89_trong_3_ng%C3%A0y/"-->
+        <!--data-hash="hy7gTO5KXv7vKlqVgOfI25aQLquqGI9S78pFQ_-8nFAlFWx6csREdMCTMiHNYIK-"-->
+        <!--rel="nofollow"></a></div>-->
+        <!--</div>-->
+        <!--<div class="mgtobottom">-->
+        <!--<div class="mcdomain"><a target="_blank"-->
+        <!--href="https://M%E1%BB%A1_%E1%BB%9F_b%E1%BB%A5ng_v%C3%A0_hai_b%C3%AAn_h%C3%B4ng_s%E1%BA%BD_bi%E1%BA%BFn_m%E1%BA%A5t_ch%E1%BB%89_trong_3_ng%C3%A0y/"-->
+        <!--data-hash="hy7gTO5KXv7vKlqVgOfI25aQLquqGI9S78pFQ_-8nFAlFWx6csREdMCTMiHNYIK-"-->
+        <!--rel="nofollow">-->
+        <!--&lt;!&ndash;intExhangeWagesSourcePlace&ndash;&gt;</a></div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div class="resize-sensor"-->
+        <!--style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: scroll; z-index: -1; visibility: hidden;">-->
+        <!--<div class="resize-sensor-expand"-->
+        <!--style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: scroll; z-index: -1; visibility: hidden;">-->
+        <!--<div style="position: absolute; left: 0px; top: 0px; width: 290px; height: 246px;"></div>-->
+        <!--</div>-->
+        <!--<div class="resize-sensor-shrink"-->
+        <!--style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: scroll; z-index: -1; visibility: hidden;">-->
+        <!--<div style="position: absolute; left: 0; top: 0; width: 200%; height: 200%"></div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<style class="MarketGidC335851" type="text/css">-->
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 400;-->
+        <!--src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/opensans/v10/K88pR3goAWT7BTt32Z01m1tXRa8TVwTICgirnJhmVJw.woff2) format('woff2');-->
+        <!--unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 400;-->
+        <!--src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/opensans/v10/RjgO7rYTmqiVp7vzi-Q5UVtXRa8TVwTICgirnJhmVJw.woff2) format('woff2');-->
+        <!--unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 400;-->
+        <!--src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/opensans/v10/u-WUoqrET9fUeobQW7jkRVtXRa8TVwTICgirnJhmVJw.woff2) format('woff2');-->
+        <!--unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 400;-->
+        <!--src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/opensans/v10/cJZKeOuBrn4kERxqtaUH3VtXRa8TVwTICgirnJhmVJw.woff2) format('woff2');-->
+        <!--unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 700;-->
+        <!--src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzCUUniRZcd_wq8DYmIfsw2A.woff2) format('woff2');-->
+        <!--unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 700;-->
+        <!--src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzOXREeHhJi4GEUJI9ob_ak4.woff2) format('woff2');-->
+        <!--unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 700;-->
+        <!--src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzBUOjZSKWg4xBWp_C_qQx0o.woff2) format('woff2');-->
+        <!--unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;-->
+        <!--}-->
+
+        <!--@font-face {-->
+        <!--font-family: 'Open Sans';-->
+        <!--font-style: normal;-->
+        <!--font-weight: 700;-->
+        <!--src: local('Open Sans Bold'), local('OpenSans-Bold'), url(https://fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzOgdm0LZdjqr5-oayXSOefg.woff2) format('woff2');-->
+        <!--unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mgresponsive {-->
+        <!--display: inherit;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mgbox {-->
+        <!--padding: 0 !important;-->
+        <!--position: relative !important;-->
+        <!--text-align: center;-->
+        <!--vertical-align: top !important;-->
+        <!--margin: 0 auto;-->
+        <!--border-style: solid;-->
+        <!--border-width: 0px;-->
+        <!--border-color: ;-->
+        <!--background-color: ;-->
+        <!--display: -ms-flexbox;-->
+        <!--display: -webkit-flex;-->
+        <!--display: flex;-->
+        <!-- -webkit-flex-direction: row;-->
+        <!-- -ms-flex-direction: row;-->
+        <!--flex-direction: row;-->
+        <!-- -webkit-flex-wrap: wrap;-->
+        <!-- -ms-flex-wrap: wrap;-->
+        <!--flex-wrap: wrap;-->
+        <!--line-height: 100% !important;-->
+        <!--transition: none !important;-->
+        <!--box-sizing: border-box;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mgbox {-->
+        <!--width: 100%;-->
+        <!--max-width: 100%;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 div.mcimg {-->
+        <!--padding: 0px;-->
+        <!--text-align: center;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 img.mcimg {-->
+        <!--border-style: solid;-->
+        <!--border-color: #ffffff;-->
+        <!--border-width: 0px;-->
+        <!--width: 100% !important;-->
+        <!--height: auto !important;-->
+        <!--max-width: 492px;-->
+        <!--max-height: 328px;-->
+        <!--box-sizing: border-box;-->
+        <!--display: block;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mctitle {-->
+        <!--margin-top: 10px;-->
+        <!--text-align: left;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mctitle a {-->
+        <!--font-weight: bold;-->
+        <!--font-size: 15px;-->
+        <!--line-height: 15px;-->
+        <!--font-style: normal;-->
+        <!--text-decoration: none;-->
+        <!--color: #333333;-->
+        <!--font-family: 'Open Sans', sans-serif;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mcdesc {-->
+        <!--display: none;-->
+        <!--text-align: center;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mcdesc a {-->
+        <!--font-weight: normal;-->
+        <!--font-size: 12px;-->
+        <!--line-height: 12px;-->
+        <!--font-style: normal;-->
+        <!--text-decoration: none;-->
+        <!--color: #666666;-->
+        <!--font-family: 'Open Sans', sans-serif;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mcdomain {-->
+        <!--display: block;-->
+        <!--text-align: center;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mcdomain a {-->
+        <!--font-weight: normal;-->
+        <!--font-size: 10px;-->
+        <!--line-height: 10px;-->
+        <!--font-style: normal;-->
+        <!--text-decoration: none;-->
+        <!--color: #bbbbbb;-->
+        <!--font-family: 'Open Sans', sans-serif;-->
+        <!--padding: 4px;-->
+        <!--display: block;-->
+        <!--overflow: hidden;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mcdomain a img.mcimgsrc {-->
+        <!--vertical-align: bottom;-->
+        <!--margin-bottom: -3px;-->
+        <!--height: 20px;-->
+        <!--width: 20px;-->
+        <!--display: inline-block;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mgline {-->
+        <!--background: none repeat scroll 0 0;-->
+        <!--background-color: ;-->
+        <!--cursor: pointer;-->
+        <!--display: inline-block;-->
+        <!--overflow: hidden;-->
+        <!--zoom: 1;-->
+        <!--display: inline;-->
+        <!--padding: 0 !important;-->
+        <!--border-style: solid;-->
+        <!--border-color: #ffffff;-->
+        <!--border-width: 0px;-->
+        <!--width: 99%;-->
+        <!--max-width: 99%;-->
+        <!--box-sizing: border-box;-->
+        <!--margin: 10px 0.5%;-->
+        <!--display: -ms-flexbox;-->
+        <!--display: -webkit-flex;-->
+        <!--display: flex;-->
+        <!-- -webkit-flex-direction: column;-->
+        <!-- -ms-flex-direction: column;-->
+        <!--flex-direction: column;-->
+        <!--word-wrap: break-word;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mgline .image-container {-->
+        <!--position: relative;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mgline .image-container .mcimgad {-->
+        <!--position: absolute;-->
+        <!--right: 0;-->
+        <!--bottom: 0;-->
+        <!--width: 20px;-->
+        <!--height: 20px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mgline {-->
+        <!--vertical-align: top;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mgline, #MarketGidComposite335851 .mgbox {-->
+        <!--min-width: 90px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mgline[max-width~="120px"] .mcdesc {-->
+        <!--display: none !important;-->
+        <!--}-->
+
+        <!--@supports not (flex-wrap: wrap) {-->
+        <!--.mgbox {-->
+        <!--display: block !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mgline {-->
+        <!--display: inline-block !important;-->
+        <!--}-->
+        <!--}-->
+
+        <!--.text-elements a {-->
+        <!--text-decoration: none;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 div.mcprice {-->
+        <!--text-align: center;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 div.mcprice span {-->
+        <!--font-weight: bold;-->
+        <!--font-size: 12px;-->
+        <!--line-height: 12px;-->
+        <!--font-style: normal;-->
+        <!--text-decoration: none;-->
+        <!--color: #ffffff;-->
+        <!--font-family: 'Open Sans', sans-serif;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 div.mgbuybox, #MarketGidComposite335851 div.mgarrowbox {-->
+        <!--display: false;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 div.mgbuybox, #MarketGidComposite335851 div.mgarrowbox, #MarketGidComposite335851 div.mcprice {-->
+        <!--display: none;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 span.mcpriceold {-->
+        <!--text-decoration: line-through !important;-->
+        <!--}-->
+
+        <!--@media (max-width: 480px) {-->
+        <!--#MarketGidComposite335851 .mgline {-->
+        <!--width: 48% !important;-->
+        <!--margin: 1% !important;-->
+        <!--max-width: 48% !important;-->
+        <!--}-->
+        <!--}-->
+
+        <!--@media (max-width: 480px) {-->
+        <!--#MarketGidComposite335851 .mgline {-->
+        <!--width: 98% !important;-->
+        <!--margin: 1% !important;-->
+        <!--max-width: 98% !important;-->
+        <!--}-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mgpopular {-->
+        <!--background-color: rgba(255, 0, 0, 0.2) !important;-->
+        <!--border-color: rgba(255, 90, 0, 0.3) !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 img.mcimg {-->
+        <!--margin: 0;-->
+        <!--opacity: 1 !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mgline {-->
+        <!--position: relative;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mgline .fake {-->
+        <!--visibility: hidden;-->
+        <!--position: relative;-->
+        <!--padding-top: 4px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mgline:hover .mctitle a {-->
+        <!--color: #2b2b2b;-->
+        <!--text-decoration: underline !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mgline:hover .mcpriceold + .mcprice, #MarketGidComposite335851 .mgline:hover .mcpriceold {-->
+        <!--visibility: hidden;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mgline:hover .mcdiscount {-->
+        <!--display: block;-->
+        <!--position: absolute;-->
+        <!--left: 0px;-->
+        <!--right: 0px;-->
+        <!--top: 5px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mgarrowbox {-->
+        <!--position: relative;-->
+        <!--background: #2b2b2b;-->
+        <!--width: 55%;-->
+        <!--height: 22px;-->
+        <!--margin: 0px;-->
+        <!--border-color: transparent;-->
+        <!--border-left-color: #2b2b2b;-->
+        <!--display: inline-block;-->
+        <!--font-family: 'Open Sans', sans-serif;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mgarrowbox:after {-->
+        <!--left: 100%;-->
+        <!--top: 50%;-->
+        <!--content: " ";-->
+        <!--height: 0px;-->
+        <!--width: 0px;-->
+        <!--position: absolute;-->
+        <!--pointer-events: none;-->
+        <!--margin-top: -11px;-->
+        <!--border: solid 11px;-->
+        <!--border-color: inherit;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mgbuybox {-->
+        <!--width: 40%;-->
+        <!--display: inline-block;-->
+        <!--text-align: right;-->
+        <!--font-weight: bold;-->
+        <!--font-family: 'Open Sans', sans-serif;-->
+        <!--font-size: 12px;-->
+        <!--color: #666666;-->
+        <!--text-decoration: underline;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mctitle {-->
+        <!--margin-top: 2px;-->
+        <!--line-height: 1 !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mctitle a {-->
+        <!--line-height: 110% !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mcdesc {-->
+        <!--margin-top: 0;-->
+        <!--margin-bottom: 2px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mcdesc a {-->
+        <!--line-height: 1.5 !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 div.mcprice {-->
+        <!--margin-top: 5px;-->
+        <!--line-height: 12px !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 div.mgbuybox, #MarketGidComposite335851 div.mgarrowbox {-->
+        <!--display: none;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mgtobottom {-->
+        <!--position: absolute;-->
+        <!--bottom: 0;-->
+        <!--width: 100%;-->
+        <!--text-align: left;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mgline .image-with-text, #MarketGidComposite335851 .mgline .mgtobottom {-->
+        <!--width: 100% !important;-->
+        <!--margin: 0 auto;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mgline .image-with-text, #MarketGidComposite335851 .mgline .mgtobottom {-->
+        <!--max-width: 492px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mghead {-->
+        <!--font-family: 'Open Sans', sans-serif !important;-->
+        <!--color: #2b397b;-->
+        <!--font-size: 14px !important;-->
+        <!--text-transform: uppercase !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mcpriceold {-->
+        <!--float: left;-->
+        <!--padding-left: 5px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mcdiscount {-->
+        <!--display: none;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mcdomain {-->
+        <!--display: block;-->
+        <!--overflow: hidden;-->
+        <!--padding: 4px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mcdomain a {-->
+        <!--padding: 0px;-->
+        <!--display: block;-->
+        <!--padding-top: 5px;-->
+        <!--padding-bottom: 2px;-->
+        <!--overflow: hidden;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 div.mcprice, #MarketGidComposite335851 div.mcriceold {-->
+        <!--font-weight: bold;-->
+        <!--font-size: 12px;-->
+        <!--line-height: 12px;-->
+        <!--font-style: normal;-->
+        <!--text-decoration: none;-->
+        <!--color: #ffffff;-->
+        <!--font-family: 'Open Sans', sans-serif;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 div.mcpriceold {-->
+        <!--text-decoration: line-through !important;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mgline[max-width~="120px"] .mgarrowbox, #MarketGidComposite335851 .mgline[max-width~="120px"] .mgbuybox {-->
+        <!--display: none !important;-->
+        <!--}-->
+
+        <!--.image-with-text {-->
+        <!--min-height: 1px;-->
+        <!--}-->
+
+        <!--@media (max-width: 480px) {-->
+        <!--#MarketGidComposite335851 .mgline {-->
+        <!--width: 98% !important;-->
+        <!--margin: 1% !important;-->
+        <!--max-width: 98% !important;-->
+        <!--}-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mg-slider-overlay {-->
+        <!--overflow: hidden;-->
+        <!--position: relative;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mg-slider-overlay .mg-slider-wrap {-->
+        <!--min-height: 200px;-->
+        <!--position: relative;-->
+        <!--width: 100%;-->
+        <!-- -webkit-transform: translate3D(0, 0, 0);-->
+        <!-- -moz-transform: translate3D(0, 0, 0);-->
+        <!-- -ms-transform: translate3D(0, 0, 0);-->
+        <!-- -o-transform: translate3D(0, 0, 0);-->
+        <!--transform: translate3D(0, 0, 0);-->
+        <!-- -webkit-transition-duration: 200ms;-->
+        <!-- -moz-transition-duration: 200ms;-->
+        <!-- -ms-transition-duration: 200ms;-->
+        <!-- -o-transition-duration: 200ms;-->
+        <!--transition-duration: 200ms;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mg-slider-overlay .mg-slider-wrap .mg-slider-box {-->
+        <!--left: 0;-->
+        <!--top: 0;-->
+        <!--position: absolute;-->
+        <!--width: 100%;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mg-pagination {-->
+        <!--text-align: center;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mg-pagination .mg-pagination-list {-->
+        <!--display: inline-block;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mg-pagination .mg-pagination-item {-->
+        <!--cursor: pointer;-->
+        <!--display: inline-block;-->
+        <!--*display: inline;-->
+        <!--*zoom: 1;-->
+        <!--width: 8px;-->
+        <!--height: 8px;-->
+        <!--margin: 0 2px;-->
+        <!--background: #ddd;-->
+        <!--border-radius: 50%;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mg-pagination .mg-pagination-item-prev, #MarketGidComposite335851 .mg-pagination .mg-pagination-item-next {-->
+        <!--background: #f7f7f7;-->
+        <!--border: 1px solid #cecece;-->
+        <!--border-radius: 2px;-->
+        <!--cursor: pointer;-->
+        <!--display: inline-block;-->
+        <!--height: 11px;-->
+        <!--margin: 0 10px;-->
+        <!--padding: 5px 0;-->
+        <!--text-align: center;-->
+        <!--vertical-align: middle;-->
+        <!--width: 29px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mg-pagination .mg-pagination-item-prev:after, #MarketGidComposite335851 .mg-pagination .mg-pagination-item-next:after {-->
+        <!--background: url(https://images.dable.io/static/i/prevnext2.png?3) no-repeat 0 0;-->
+        <!--background-size: 17px 11px;-->
+        <!--content: "";-->
+        <!--display: inline-block;-->
+        <!--height: 13px;-->
+        <!--width: 9px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mg-pagination .mg-pagination-item-next:after {-->
+        <!--background-position: -10px 0;-->
+        <!--width: 8px;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mg-pagination .mg-pagination-item-current {-->
+        <!--background: #508eef;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 div.mcimg a.close-informer {-->
+        <!--width: 14px;-->
+        <!--height: 14px;-->
+        <!--background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyFpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDIxIDc5LjE1NDkxMSwgMjAxMy8xMC8yOS0xMTo0NzoxNiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo5NzI0ODBDMzY3ODcxMUU1OEM4RUU2RUJCOUREODIyQiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo5NzI0ODBDNDY3ODcxMUU1OEM4RUU2RUJCOUREODIyQiI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjk3MjQ4MEMxNjc4NzExRTU4QzhFRTZFQkI5REQ4MjJCIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjk3MjQ4MEMyNjc4NzExRTU4QzhFRTZFQkI5REQ4MjJCIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+uNcpEQAAAHxJREFUeNqckgEKwCAIRe3fYjfKc2zX6hydaLRbbDnGkLDIPggl/5lKIcbIRJRqbDSnUmOHE6LPm+CEfhj6lnN+o5WVh1VOm6xColCXc/cgLWYev9gaejnQojCab5RDzyDt6RantqoBaz5zq54ZywJ3CXjIwQGd8skfAQYALdQqftYulocAAAAASUVORK5CYIJ0ZW50Ij4NCiA8ZGl2IGNsYXNzPSJjb250ZW50LWNvbnRhaW5lciI+PGZpZWxkc2V0Pg0KICA8aDI+NTAyIC0gV2ViIHNlcnZlciByZWNlaXZlZCBhbiBpbnZhbGlkIHJlc3BvbnNlIHdoaWxlIGFjdGluZyBhcyBhIGdhdGV3YXkgb3IgcHJveHkgc2VydmVyLjwvaDI+DQogIDxoMz5UaGVyZSBpcyBhIHByb2JsZW0gd2l0aCB0aGUgcGFnZSB5b3UgYXJlIGxvb2tpbmcgZm9yLCBhbmQgaXQgY2Fubm90IGJlIGRpc3BsYXllZC4gV2hlbiB0aGUgV2ViIHNlcnZlciAod2hpbGUgYWN0aW5nIGFzIGEgZ2F0ZXdheSBvciBwcm94eSkgY29udGFjdGVkIHRoZSB1cHN0cmVhbSBjb250ZW50IHNlcnZlciwgaXQgcmVjZWl2ZWQgYW4gaW52YWxpZCByZXNwb25zZSBmcm9tIHRoZSBjb250ZW50IHNlcnZlci48L2gzPg0KIDwvZmllbGRzZXQ+PC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==");-->
+        <!--display: block;-->
+        <!--opacity: 0;-->
+        <!--position: absolute;-->
+        <!--right: 3px;-->
+        <!--top: 3px;-->
+        <!--z-index: 1;-->
+        <!--cursor: pointer;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 div.mgline:hover a.close-informer {-->
+        <!--opacity: 0.7;-->
+        <!-- -moz-transition: all 0.3s ease-out;-->
+        <!-- -o-transition: all 0.3s ease-out;-->
+        <!-- -webkit-transition: all 0.3s ease-out;-->
+        <!-- -ms-transition: all 0.3s ease-out;-->
+        <!--transition: all 0.3s ease-out;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 div.mgline a.close-informer:hover {-->
+        <!--opacity: 1;-->
+        <!-- -moz-transition: all 0.3s ease-out;-->
+        <!-- -o-transition: all 0.3s ease-out;-->
+        <!-- -webkit-transition: all 0.3s ease-out;-->
+        <!-- -ms-transition: all 0.3s ease-out;-->
+        <!--transition: all 0.3s ease-out;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 div.mcimg {-->
+        <!--position: relative;-->
+        <!--display: inline-block-->
+        <!--}-->
+
+        <!--div.image-with-price {-->
+        <!--position: relative;-->
+        <!--}-->
+
+        <!--#MarketGidComposite335851 .mgline .image-container {-->
+        <!--width: auto;-->
+        <!--margin: 0 auto;-->
+        <!--position: relative;-->
+        <!--}</style>-->
+        <!--</div>-->
+        <!--<script type="text/javascript" charset="utf-8" src="../static/comic_files/1(2)"></script>-->
+        <!--</div>&lt;!&ndash; Composite End &ndash;&gt;</div>-->
+    </div>
+</div>
+{% endblock %}

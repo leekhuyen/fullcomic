@@ -1,0 +1,5 @@
+<OpenSearchDescription xmlns="http://www.opensearch.org/Specifications/OpenSearch/1.1">
+<ShortName>TruyenFull.vn</ShortName>
+<Description>Tìm truyện tại website http://truyenfull.vn</Description>
+<Url type="text/html" method="get" template="http://truyenfull.vn/tim-kiem/?tukhoa={searchTerms}"/>
+</OpenSearchDescription>
