@@ -1,2 +1,2 @@
 *.db
-comic_lib/model/__pycache__/*.pyc
+#*/__pycache__/
